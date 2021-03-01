@@ -1,0 +1,12 @@
+# tye application configuration file
+# read all about it at https://github.com/dotnet/tye
+#
+# when you've given us a try, we'd love to know what you think:
+#    https://aka.ms/AA7q20u
+#
+name: repositorymanagernet
+services:
+- name: repositorymanagernet-api
+  project: RepositoryManagerNet.API/RepositoryManagerNet.API.csproj
+- name: repositorymanagernet-webui
+  project: RepositoryManagerNet.WebUI/RepositoryManagerNet.WebUI.csproj
