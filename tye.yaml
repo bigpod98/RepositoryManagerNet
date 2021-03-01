@@ -10,3 +10,7 @@ services:
   project: RepositoryManagerNet.API/RepositoryManagerNet.API.csproj
 - name: repositorymanagernet-webui
   project: RepositoryManagerNet.WebUI/RepositoryManagerNet.WebUI.csproj
+- name: mysql-container
+  image: mysql
+  bindings:
+  - port: 3306
