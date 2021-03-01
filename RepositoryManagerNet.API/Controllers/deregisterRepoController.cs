@@ -14,6 +14,8 @@ namespace RepositoryManagerNet.API.Controllers
         [HttpDelete]
         public string Delete([FromBody] Models.RepoData RepositoryData)
         {
+            //delete from database
+
             return RepositoryData.Name;
         }
     }

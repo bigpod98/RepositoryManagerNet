@@ -14,12 +14,15 @@ namespace RepositoryManagerNet.API.Controllers
         [HttpGet("repoID")]
         public string Get(string repoID)
         {
+            //get single instance from database
             return "";
         }
 
         [HttpGet()]
         public List<Models.RepoData> Get()
         {
+            //get all instances from database
+
             return new List<Models.RepoData>();
         }
     }
