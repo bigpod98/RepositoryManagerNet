@@ -2,6 +2,18 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "dotnet dbdeploy",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "buildDBDeployment",
+            "program": "${workspaceFolder}/databaseDeployment/bin/Debug/net5.0/databaseDeployment.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "console": "internalConsole"
+        },
+        
+        {
             "name": "dotnet WebUI",
             "type": "coreclr",
             "request": "launch",
