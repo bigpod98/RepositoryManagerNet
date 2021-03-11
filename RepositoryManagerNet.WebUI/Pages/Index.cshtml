@@ -1,36 +1,83 @@
 ﻿@page
 @model RepositoryManagerNet.WebUI.Pages.IndexModel
 @{
-    List<string> test = new List<string>();
-        test.Add("hello");
-        test.Add("World");
-    int x = 1;
-    object incrementX()
-    {
-        x++;
-        return new object();
-    }
+    List<RepositoryManagerNet.WebUI.Models.RepoData> Repos = new List<RepositoryManagerNet.WebUI.Models.RepoData>();
+    Repos.Add(new RepositoryManagerNet.WebUI.Models.RepoData(1, "testa","APT","testa.test"));
+    Repos.Add(new RepositoryManagerNet.WebUI.Models.RepoData(2, "testa","RPM","testb.test"));
 }
-
-<table>
-    <td>
-        <th>
-            ID
-        </th>
-        <th>
-            Name
-        </th>
-    </td>
-@foreach (var item in test)
-{
-    <td>
+<head></head>
+<body>
+    <div>
+        <form>
+            <label>Name: </label>
+            <input type="text">
+            <label>Package manager type: </label>
+            <input type="radio" name="PackageManagerType" value="APT"> 
+            <label>APT Package</label>
+            <input type="radio" name="PackageManagerType" value="ARCH"> 
+            <label>Pacman Packages</label>
+            <input type="radio" name="PackageManagerType" value="RPM"> 
+            <label>RPM Packages</label>
+            <label>Base Domain: </label>
+            <input type="text">
+        </form>
+    </div>
+    <div>
+    <table>
         <tr>
-            @x
+            <th>
+                ID
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Domain
+            </th>
+            <th>
+                 
+            </th>
         </tr>
-        <tr>
-            @item
-        </tr>
-    </td>
-    @incrementX();
-}
-</table>
+        @foreach (RepositoryManagerNet.WebUI.Models.RepoData i in Repos)
+        {
+            <tr>
+                <td>
+                    @i.ID;
+                </td>
+                <td>
+                    @i.Name;
+                </td>
+                <td>
+                    @i.PackageType;
+                </td>
+                <td>
+                    @i.BaseDomain
+                </td>
+                <td>
+                    <a asp-page="/Repository/@i.ID">Details</a><br />
+                    <a asp-page="/RepositoryEdit/@i.ID">EDIT</a><br />
+                </td>
+            </tr>
+        }
+    </table>
+    </div>
+    <div>
+        <form>
+            <label>Name: </label>
+            <input type="text">
+            <label>Package manager type: </label>
+            <input type="radio" name="PackageManagerType" value="APT"> 
+            <label>APT Package</label>
+            <input type="radio" name="PackageManagerType" value="ARCH"> 
+            <label>Pacman Packages</label>
+            <input type="radio" name="PackageManagerType" value="RPM"> 
+            <label>RPM Packages</label>
+            <label>Base Domain: </label>
+            <input type="text">
+            <button type="submit">SUBMIT</button>
+        </form>
+    </div>
+</body>
