@@ -5,23 +5,10 @@
     Repos.Add(new RepositoryManagerNet.WebUI.Models.RepoData(1, "testa","APT","testa.test"));
     Repos.Add(new RepositoryManagerNet.WebUI.Models.RepoData(2, "testa","RPM","testb.test"));
 }
-<head></head>
+<head>
+    <link rel="stylesheet" href="css/style.css"> 
+</head>
 <body>
-    <div>
-        <form>
-            <label>Name: </label>
-            <input type="text">
-            <label>Package manager type: </label>
-            <input type="radio" name="PackageManagerType" value="APT"> 
-            <label>APT Package</label>
-            <input type="radio" name="PackageManagerType" value="ARCH"> 
-            <label>Pacman Packages</label>
-            <input type="radio" name="PackageManagerType" value="RPM"> 
-            <label>RPM Packages</label>
-            <label>Base Domain: </label>
-            <input type="text">
-        </form>
-    </div>
     <div>
     <table>
         <tr>
@@ -65,18 +52,16 @@
     </table>
     </div>
     <div>
-        <form>
+        <form method="post" asp-page="/Index">
             <label>Name: </label>
-            <input type="text">
+            <input type="text" asp-for="Name">
             <label>Package manager type: </label>
-            <input type="radio" name="PackageManagerType" value="APT"> 
-            <label>APT Package</label>
-            <input type="radio" name="PackageManagerType" value="ARCH"> 
-            <label>Pacman Packages</label>
-            <input type="radio" name="PackageManagerType" value="RPM"> 
-            <label>RPM Packages</label>
+            @foreach (string item in Model.PackageManagerTypes)
+            {
+                <input type="radio" asp-for="PackageType" value="@item" />@item
+            }
             <label>Base Domain: </label>
-            <input type="text">
+            <input type="text" asp-for="BaseDomain">
             <button type="submit">SUBMIT</button>
         </form>
     </div>
