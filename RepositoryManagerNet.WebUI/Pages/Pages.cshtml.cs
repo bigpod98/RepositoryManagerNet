@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace RepositoryManagerNet.WebUI.Pages
+namespace MyApp.Namespace
 {
-    public class IndexModel : PageModel
+    public class PagesModel : PageModel
     {
         public void OnGet()
         {

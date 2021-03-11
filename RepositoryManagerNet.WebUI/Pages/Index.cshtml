@@ -1,6 +1,36 @@
 ﻿@page
-@model MyApp.Namespace.PagesModel
+@model RepositoryManagerNet.WebUI.Pages.IndexModel
 @{
+    List<string> test = new List<string>();
+        test.Add("hello");
+        test.Add("World");
+    int x = 1;
+    object incrementX()
+    {
+        x++;
+        return new object();
+    }
 }
 
-<p>hello <b>youtube</b>!!! how are you today?</p>
+<table>
+    <td>
+        <th>
+            ID
+        </th>
+        <th>
+            Name
+        </th>
+    </td>
+@foreach (var item in test)
+{
+    <td>
+        <tr>
+            @x
+        </tr>
+        <tr>
+            @item
+        </tr>
+    </td>
+    @incrementX();
+}
+</table>
