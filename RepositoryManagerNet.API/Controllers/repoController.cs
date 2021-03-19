@@ -60,6 +60,7 @@ namespace RepositoryManagerNet.API.Controllers
             List<Models.RepoData> repos = new List<Models.RepoData>();
             while (reader.Read())
             {
+                Console.WriteLine(reader.GetString("Name"));
                 repos.Add(new Models.RepoData(reader.GetInt32("ID"), reader.GetString("Name"),
                     reader.GetString("PackageType"), reader.GetString("BaseDomain")));
             }

@@ -1,9 +1,14 @@
 ﻿@page
+@using System.Net.Http
+@using System.Text.Json
 @model RepositoryManagerNet.WebUI.Pages.IndexModel
 @{
     List<RepositoryManagerNet.WebUI.Models.RepoData> Repos = new List<RepositoryManagerNet.WebUI.Models.RepoData>();
-    Repos.Add(new RepositoryManagerNet.WebUI.Models.RepoData(1, "testa","APT","testa.test"));
-    Repos.Add(new RepositoryManagerNet.WebUI.Models.RepoData(2, "testa","RPM","testb.test"));
+    HttpResponseMessage responseMessage = await IndexModel.client.GetAsync("api/repo"); 
+    var body = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+    Console.WriteLine(body);
+    Repos = JsonSerializer.Deserialize<List<RepositoryManagerNet.WebUI.Models.RepoData>>(body);
+    Console.WriteLine(Repos[0].ID);
 }
 <head>
     <link rel="stylesheet" href="css/style.css"> 
