@@ -14,7 +14,9 @@ namespace RepositoryManagerNet.WebUI.Pages
 {
     public class IndexModel : PageModel
     {
-        private static HttpClient client = new HttpClient();
+        private static HttpClient client = new HttpClient()
+        {BaseAddress = new Uri("http://127.0.0.1:6000")};
+
 
         [BindProperty]
         public string Name {get;set;}
@@ -34,8 +36,7 @@ namespace RepositoryManagerNet.WebUI.Pages
             var Content = new StringContent(JsonSerializer.Serialize(Repository),
                                             Encoding.UTF8,
                                             "application/json");
-            client.BaseAddress = new Uri("http://127.0.0.1:6000");
-            HttpResponseMessage responseMessage = await client.PostAsync("api/register", Content); 
+            HttpResponseMessage responseMessage = await client.PostAsync("api/registerRepo", Content); 
             
         }
     }
