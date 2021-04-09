@@ -43,8 +43,13 @@ namespace RepositoryManagerNet.API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RepositoryManagerNet.API v1"));
             }
-
+            
+            Settings.getSettingsENV();
+            Console.WriteLine("username: " + Settings.MYSQL_UserName);
+            Settings.getSettingsDB();
             //app.UseHttpsRedirection();
+
+            System.IO.File.WriteAllText("/home/pajdisek/teststream.txt", Settings.MYSQL_PORT);
 
             app.UseRouting();
 
