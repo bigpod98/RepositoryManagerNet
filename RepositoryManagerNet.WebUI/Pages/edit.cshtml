@@ -1,9 +1,16 @@
-﻿@page "{id}"
+﻿@page "{id?}"
 @model RepositoryManagerNet.WebUI.Pages.editModel
 @{
     
 }
 
-<body>
-    
+<body >
+    <form method="POST">
+        <input type="text" asp-for="@Model.ID" name="ID" disabled="true"> 
+        <input type="text" asp-for="@Model.Name" name="Name"> 
+        <input type="text" asp-for="@Model.PackageType" name="PackageType"> 
+        <input type="text" asp-for="@Model.BaseDomain" name="BaseDomain"> 
+
+         <input type="submit" value="submit">
+    </form>
 </body>
