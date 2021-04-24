@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: repositorymanagernetwebui
+  namespace: repositorymanagernet
+  labels:
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rmn-wui
+  template:
+    metadata:
+      labels:
+        app: rmn-wui
+    spec:
+      containers:
+      - image: repositorymanagernetwebui
+        name: rmn-wui
+        ports:
+        - containerPort: 5000
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: repositorymanagernetapi
+  namespace: repositorymanagernet
+  labels:
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rmn-api
+  template:
+    metadata:
+      labels:
+        app: rmn-api
+    spec:
+      containers:
+      - image: repositorymanagernetapi
+        name: rmn-api
+        env:
+        - name: MYSQL_DBName
+          value: ""
+        - name: MYSQL_UserName
+          value: ""
+        - name: MYSQL_Password
+          value: ""
+        - name: MYSQL_PORT
+          value: ""
+        - name: MYSQL_IP
+          value: ""
+        - name: MYSQL_PORT
+          value: ""
+        ports:
+        - containerPort: 5000

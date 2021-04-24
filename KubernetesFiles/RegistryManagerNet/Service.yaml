@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: RegistryManagerNetAPI
+  namespace: RegistryManagerNet
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 5000
+  selector:
+    app: rmn-api
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: RegistryManagerNetWebUI
+  namespace: RegistryManagerNet
+spec:
+  type: Cluster
+  ports:
+  - port: 80
+    targetPort: 5000
+  selector:
+    app: rmn-wui
