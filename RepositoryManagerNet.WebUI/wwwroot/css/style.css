@@ -1,0 +1,30 @@
+.flex
+{
+    display: flex;
+}
+
+.navmenu
+{
+    width: 200px;
+    background-color: aqua;
+    height: 100%;
+}
+
+.body
+{
+    width: 82%;
+    background-color: greenyellow;
+}
+
+.outerdiv
+{
+    margin-left: 5%;
+    margin-right: 5%;
+    height: 1080px;
+    background-color: cadetblue;
+}
+
+body
+{
+    min-height: 1080px;
+}
