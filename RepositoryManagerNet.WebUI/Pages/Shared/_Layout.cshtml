@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html land="en">
+
+<head>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="flex outerdiv">
+        <div class="navmenu">
+            <a asp-page="/Index">Linux Package Managers</a>
+            <a asp-page="/Pages">Mirrors</a>
+        </div>
+        <div class="body">
+            @RenderBody();
+        </div>
+    </div>
+</body>
