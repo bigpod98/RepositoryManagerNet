@@ -9,7 +9,6 @@ if (args[0] == "--env-var")
 {
     conBuilder = new MySqlConnectionStringBuilder()
     {
-<<<<<<< HEAD
         Server = GetEnvironmentVariable("MYSQL_IP"),
         Database = GetEnvironmentVariable("MYSQL_DATABASE_NAME"),
         UserID = GetEnvironmentVariable("MYSQL_USERNAME"),
@@ -29,28 +28,11 @@ else
     };
 }
 MySqlConnection con = new MySqlConnection(conBuilder.GetConnectionString(true));
-=======
-        static void Main(string[] args)
-        {
-            MySqlConnectionStringBuilder conBuilder = new MySqlConnectionStringBuilder()
-            {
-                Server = args[0],
-                Database = args[1],
-                UserID = args[2],
-                Password = args[3],
-                Port = Convert.ToUInt32(args[4])
-            };
-            MySqlConnection con = new MySqlConnection(conBuilder.GetConnectionString(true));
->>>>>>> 33db44ec80875af1b6ad6d5a2970882cf1e9014f
 
 List<string> commands = new List<string>()
             {
             "CREATE TABLE Repositories (ID int not NULL AUTO_INCREMENT, Name varchar(30) not null, PackageType varchar(10) not null, BaseDomain varchar(50) not null, PRIMARY KEY (ID));",
             "CREATE TABLE Settings (setting varchar (64) not null, vsettings varchar(128) not null, PRIMARY KEY (setting)"
-<<<<<<< HEAD
-
-=======
->>>>>>> 33db44ec80875af1b6ad6d5a2970882cf1e9014f
             };
 
 foreach (string command in commands)
