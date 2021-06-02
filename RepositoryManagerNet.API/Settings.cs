@@ -27,7 +27,7 @@ namespace RepositoryManagerNet.API
             MYSQL_DBName = GetEnvironmentVariable("MYSQL_DATABASE_NAME");
             MYSQL_UserName = GetEnvironmentVariable("MYSQL_USERNAME");
             MYSQL_Password = GetEnvironmentVariable("MYSQL_PASSWORD");
-            MYSQL_IP = GetEnvironmentVariable("MYSQL_IO");
+            MYSQL_IP = GetEnvironmentVariable("MYSQL_IP");
             MYSQL_PORT = GetEnvironmentVariable("MYSQL_PORT");
 
             if (MYSQL_DBName == noValueENV)
