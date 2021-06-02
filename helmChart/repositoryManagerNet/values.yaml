@@ -1,0 +1,7 @@
+global:
+  db: 
+    name: ""
+    username: ""
+    password: ""
+    port: ""
+    ip: ""

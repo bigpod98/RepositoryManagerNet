@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: databaseDeployment
+  namespace: repositorymanagernet
+spec:
+  template:
+    spec:
+      containers:
+      - name: dbdeploy
+        image: database-deployment
+        command: ["/opt/databaseDeployment/databaseDeployment --env-var"]
+        env:
+        - name: MYSQL_DBName
+          value: ""
+        - name: MYSQL_UserName
+          value: ""
+        - name: MYSQL_Password
+          value: ""
+        - name: MYSQL_PORT
+          value: ""
+        - name: MYSQL_IP
+          value: ""
+        - name: MYSQL_PORT
+          value: ""
+      restartPolicy: Never
+  backoffLimit: 4

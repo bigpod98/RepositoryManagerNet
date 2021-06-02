@@ -1,8 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: repositorymanagernetwebui
-  namespace: repositorymanagernet
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
 spec:
   replicas: 1
   selector:
@@ -24,8 +24,8 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: repositorymanagernetapi
-  namespace: repositorymanagernet
+  name: rmn-api
+  namespace: {{ .Release.Namespace }}
 spec:
   replicas: 1
   selector:
@@ -41,16 +41,14 @@ spec:
         name: rmn-api
         env:
         - name: MYSQL_DBName
-          value: ""
+          value: {{ .Values.global.db.name }}
         - name: MYSQL_UserName
-          value: ""
+          value: {{ .Values.global.db.username }}
         - name: MYSQL_Password
-          value: ""
+          value: {{ .Values.global.db.password }}
         - name: MYSQL_PORT
-          value: ""
+          value: {{ .Values.global.db.port }}
         - name: MYSQL_IP
-          value: ""
-        - name: MYSQL_PORT
-          value: ""
+          value: {{ .Values.global.db.ip }}
         ports:
         - containerPort: 5000

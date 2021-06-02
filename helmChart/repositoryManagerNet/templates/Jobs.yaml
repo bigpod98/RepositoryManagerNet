@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: dbdeploy
+  namespace: {{ .Release.Namespace }}
+spec:
+  template:
+    spec:
+      containers:
+      - name: dbdeploy
+        image: database-deployment
+        command: ["/opt/databaseDeployment/databaseDeployment --env-var"]
+        env:
+        - name: MYSQL_DBName
+          value: {{ .Values.global.db.name }}
+        - name: MYSQL_UserName
+          value: {{ .Values.global.db.username }}
+        - name: MYSQL_Password
+          value: {{ .Values.global.db.password }}
+        - name: MYSQL_PORT
+          value: {{ .Values.global.db.port }}
+        - name: MYSQL_IP
+          value: {{ .Values.global.db.ip }}
+      restartPolicy: Never
+  backoffLimit: 4
