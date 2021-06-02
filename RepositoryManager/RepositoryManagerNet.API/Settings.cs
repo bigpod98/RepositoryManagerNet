@@ -1,6 +1,7 @@
 using System;
 using static System.Environment;
 using MySql.Data.MySqlClient;
+using static RepositoryManagerNet.API.staticVariables;
 
 namespace RepositoryManagerNet.API
 {
@@ -54,15 +55,6 @@ namespace RepositoryManagerNet.API
 
         public static void getSettingsDB()
         {
-            MySqlConnectionStringBuilder conBuilder = new MySqlConnectionStringBuilder()
-            {
-                Server = Settings.MYSQL_IP,
-                Database = Settings.MYSQL_DBName,
-                UserID = Settings.MYSQL_UserName,
-                Password = Settings.MYSQL_Password,
-                Port = Convert.ToUInt32(Settings.MYSQL_PORT)
-            };
-
             MySqlConnection con = new MySqlConnection(conBuilder.GetConnectionString(true));
 
             string Command = $"SELECT setting, vsetting FROM Settings;";

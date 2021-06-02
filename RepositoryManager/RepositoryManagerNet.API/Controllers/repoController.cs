@@ -6,19 +6,20 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MySql.Data.MySqlClient;
+using static RepositoryManagerNet.API.staticVariables;
 
 namespace RepositoryManagerNet.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
     public class repoController : ControllerBase
-    {
+    { 
         [HttpGet("repoID")]
         public string Get(string repoID)
         {
-            MySqlConnection con = new MySqlConnection("Server=10.152.183.94;Database=repomanager;Uid=RepoManager;Pwd=RepoManager;");
+            MySqlConnection con = new MySqlConnection(conBuilder.GetConnectionString(true));
 
-            string Command = $"SELECT * FROM Repositories WHERE ID=@repoID;";
+            string Command = $"SELECT ID, Name, PackageType, BaseDomain FROM Repositories WHERE ID=@repoID;";
 
             MySqlCommand cmd = new MySqlCommand(Command, con);
             if (Int32.TryParse(repoID, out _))
@@ -29,6 +30,7 @@ namespace RepositoryManagerNet.API.Controllers
             {
                 return "Error: RepoID not a intiger";
             }
+
             con.Open();
 
             MySqlDataReader reader = cmd.ExecuteReader();
@@ -48,20 +50,9 @@ namespace RepositoryManagerNet.API.Controllers
         [HttpGet()]
         public List<Models.RepoData> Get()
         {
-            // MySqlConnection con = new MySqlConnection("Server=10.152.183.94;Database=repomanager;Uid=RepoManager;Pwd=RepoManager;");
-
-            MySqlConnectionStringBuilder conBuilder = new MySqlConnectionStringBuilder()
-            {
-                Server=Settings.MYSQL_IP,
-                Database=Settings.MYSQL_DBName,
-                UserID=Settings.MYSQL_UserName,
-                Password=Settings.MYSQL_Password,
-                Port=Convert.ToUInt32(Settings.MYSQL_PORT) 
-            };
-
             MySqlConnection con = new MySqlConnection(conBuilder.GetConnectionString(true));
 
-            string Command = $"SELECT * FROM Repositories;";
+            string Command = $"SELECT ID, Name, PackageType, BaseDomain FROM Repositories;";
 
             MySqlCommand cmd = new MySqlCommand(Command, con);
             con.Open();

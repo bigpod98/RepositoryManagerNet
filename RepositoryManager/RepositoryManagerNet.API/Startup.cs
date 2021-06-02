@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using MySql.Data.MySqlClient;
+using static RepositoryManagerNet.API.staticVariables;
 
 namespace RepositoryManagerNet.API
 {
@@ -26,7 +28,6 @@ namespace RepositoryManagerNet.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -45,11 +46,18 @@ namespace RepositoryManagerNet.API
             }
             
             Settings.getSettingsENV();
-            Console.WriteLine("username: " + Settings.MYSQL_UserName);
+
+            conBuilder = new MySqlConnectionStringBuilder()
+            {
+                Server = Settings.MYSQL_IP,
+                Database = Settings.MYSQL_DBName,
+                UserID = Settings.MYSQL_UserName,
+                Password = Settings.MYSQL_Password,
+                Port = Convert.ToUInt32(Settings.MYSQL_PORT)
+            };
+
             Settings.getSettingsDB();
             //app.UseHttpsRedirection();
-
-            System.IO.File.WriteAllText("/home/pajdisek/teststream.txt", Settings.MYSQL_PORT);
 
             app.UseRouting();
 
