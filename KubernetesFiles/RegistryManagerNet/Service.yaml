@@ -19,7 +19,7 @@ metadata:
   name: RegistryManagerNetWebUI
   namespace: RegistryManagerNet
 spec:
-  type: Cluster
+  type: ClusterIP
   ports:
   - port: 80
     targetPort: 5000
