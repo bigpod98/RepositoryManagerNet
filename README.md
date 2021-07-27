@@ -3,7 +3,7 @@
 Im making this project during my streams on youtube.
 
 RepositoryManagerNet(WORKING NAME) is a set of software written in dotnet C# and other languages mainly targeting kubernetes clusters for deployment of Linux repositories and other types of repositories in future.
-It mainly uses DotNet 5.0 ASP.NET Core 5 and C# but might in future use other languages and technologies to support future features.
+It mainly uses DotNet 6, ASP.NET Core 6 and C# but might in future feature other languages and technologies to support future features.
 
 
 
