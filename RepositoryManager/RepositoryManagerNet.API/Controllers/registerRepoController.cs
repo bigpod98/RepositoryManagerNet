@@ -74,7 +74,7 @@ namespace RepositoryManagerNet.API.Controllers
 
             KubeObject.Metadata.Name = RepoData.Name;
             KubeObject.Metadata.NamespaceProperty = Settings.KubernetesNamespace;
-            KubeObject.Spec.Rules[0].Host = Settings.KubernetesNamespace;
+            KubeObject.Spec.Rules[0].Host = Settings.RepositoryHostname;
             KubeObject.Spec.Rules[0].Http.Paths[0].Path = $"/mirrors/{RepoData.Name}(/|$)(.*)";
             KubeObject.Spec.Rules[0].Http.Paths[0].Backend.Service.Name = RepoData.Name;
 

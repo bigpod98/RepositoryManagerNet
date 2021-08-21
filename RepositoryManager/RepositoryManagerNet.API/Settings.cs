@@ -14,6 +14,8 @@ namespace RepositoryManagerNet.API
         public static string MYSQL_PORT;
         public static string StorageClass;
         public static string KubernetesNamespace;
+        public static string RepositoryHostname;
+
 
         public static class ContainerImages
         {
