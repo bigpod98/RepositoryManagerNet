@@ -6,5 +6,7 @@ WORKDIR /build
 RUN dotnet publish --configuration Release --output /buildOutput --runtime linux-x64
 
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS RUNTIME
+RUN mkdir -p /KubernetesObjects/
+COPY KubernetesObjects/* /KubernetesObjects/
 COPY --from=BUILDER /buildOutput /opt/RepositoryManagerNet.API
 ENTRYPOINT ["/opt/RepositoryManagerNet.API/RepositoryManagerNet.API"]

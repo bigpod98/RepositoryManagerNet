@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nameofmirror
+  namespace: namespace
+spec:
+  selector:
+    matchLabels:
+      app: nameofmirror
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nameofmirror
+    spec:
+      initContainers:
+        - name: nameofmirror-init
+          image: initimage
+          env:
+            - name: "MIRROR_LINKS"
+              value: "links"
+      containers:
+        - name: nameofmirror
+          image: image
+          resources:
+            limits:
+              memory: 1Gi
+              cpu: "500m"
+          imagePullPolicy: "IfNotPresent"
+        - name: nameofmirror-server
+          image: nginx
+          resources:
+            limits:
+              memory: 1Gi
+              cpu: "500m"
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: imagepullsecret
