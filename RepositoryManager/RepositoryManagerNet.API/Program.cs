@@ -20,7 +20,7 @@ namespace RepositoryManagerNet.API
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>().UseUrls("http://0.0.0.0:6000");
+                    webBuilder.UseStartup<Startup>();
                 });
     }
 }

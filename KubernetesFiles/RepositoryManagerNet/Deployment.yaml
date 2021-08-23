@@ -40,11 +40,11 @@ spec:
       - image: ghcr.io/bigpod98/repositorymanagernetapi:latest
         name: rmn-api
         env:
-        - name: MYSQL_DBName
+        - name: MYSQL_DATABASE_NAME
           value: "repositorymanagernet"
-        - name: MYSQL_UserName
+        - name: MYSQL_USERNAME
           value: "rmn"
-        - name: MYSQL_Password
+        - name: MYSQL_PASSWORD
           value: "repositorymanagernet"
         - name: MYSQL_IP
           value: "mysql.mysql-database.svc.cluster.local"
