@@ -32,14 +32,25 @@ MySqlConnection con = new MySqlConnection(conBuilder.GetConnectionString(true));
 List<string> commands = new List<string>()
             {
             "CREATE TABLE Repositories (ID int not NULL AUTO_INCREMENT, Name varchar(30) not null, PackageType varchar(10) not null, BaseDomain varchar(50) not null, PRIMARY KEY (ID));",
-            "CREATE TABLE Settings (setting varchar (64) not null, vsettings varchar(128) not null, PRIMARY KEY (setting));"
+            "CREATE TABLE Settings (setting varchar (64) not null, vsettings varchar(128), PRIMARY KEY (setting));",
+            "INSERT INTO Settings (setting, vsettings) VALUES (\"StorageClass\", \"pajdsiek-nfs\");",
+            "INSERT INTO Settings (setting, vsettings) VALUES (\"KubernetesNamespace\", \"repositorymanagernet\");",
+            "INSERT INTO Settings (setting, vsettings) VALUES (\"APTRepository\", \"ghcr.io/bigpod98/aptpackagewatcher:latest\");",
+            "INSERT INTO Settings (setting, vsettings) VALUES (\"RPMRepository\", \"ghcr.io/bigpod98/rpmpackagewatcher:latest\");",
+            "INSERT INTO Settings (setting, vsettings) VALUES (\"PacmanRepository\", \"ghcr.io/bigpod98/pacmanpackagewatcher:latest\");"
             };
 
 con.Open();
 foreach (string command in commands)
 {
     MySqlCommand cmd = new MySqlCommand(command, con);
-
-    cmd.ExecuteNonQuery();
+    try(MySql.Data.MySqlClient.MysqlException ex)
+    {
+        cmd.ExecuteNonQuery();
+    }
+    catch
+    {
+        
+    }
 }
 
