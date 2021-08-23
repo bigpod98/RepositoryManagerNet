@@ -72,19 +72,19 @@ namespace RepositoryManagerNet.API
                 switch (storageKey)
                 {
                     case "StorageClass":
-                        StorageClass = reader.GetString("vsetting");
+                        StorageClass = reader.GetString("vsettings");
                         break;
                     case "KubernetesNamespace":
-                        KubernetesNamespace = reader.GetString("vsetting");
+                        KubernetesNamespace = reader.GetString("vsettings");
                         break;
                     case "APTRepository":
-                        ContainerImages.APTRepository = reader.GetString("vsetting");
+                        ContainerImages.APTRepository = reader.GetString("vsettings");
                         break;
                     case "RPMRepository":
-                        ContainerImages.RPMRepository = reader.GetString("vsetting");
+                        ContainerImages.RPMRepository = reader.GetString("vsettings");
                         break;
                     case "PacmanRepository":
-                        ContainerImages.PacmanRepository = reader.GetString("vsetting");
+                        ContainerImages.PacmanRepository = reader.GetString("vsettings");
                         break;
                 }
             }
