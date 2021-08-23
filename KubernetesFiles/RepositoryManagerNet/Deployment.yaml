@@ -14,10 +14,10 @@ spec:
         app: rmn-wui
     spec:
       containers:
-      - image: repositorymanagernetwebui
+      - image: ghcr.io/bigpod98/repositorymanagernetwebui:latest
         name: rmn-wui
         ports:
-        - containerPort: 5000
+        - containerPort: 80
 
 ---
 
@@ -37,20 +37,18 @@ spec:
         app: rmn-api
     spec:
       containers:
-      - image: repositorymanagernetapi
+      - image: ghcr.io/bigpod98/repositorymanagernetapi:latest
         name: rmn-api
         env:
         - name: MYSQL_DBName
-          value: ""
+          value: "repositorymanagernet"
         - name: MYSQL_UserName
-          value: ""
+          value: "rmn"
         - name: MYSQL_Password
-          value: ""
-        - name: MYSQL_PORT
-          value: ""
+          value: "repositorymanagernet"
         - name: MYSQL_IP
-          value: ""
+          value: "mysql.mysql-database.svc.cluster.local"
         - name: MYSQL_PORT
-          value: ""
+          value: "3306"
         ports:
-        - containerPort: 5000
+        - containerPort: 80
