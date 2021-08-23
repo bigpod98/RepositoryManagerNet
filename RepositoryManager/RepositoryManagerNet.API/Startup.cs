@@ -66,6 +66,7 @@ namespace RepositoryManagerNet.API
                 }
                 catch (MySql.Data.MySqlClient.MySqlException ex)
                 {
+                    Console.WriteLine("No Settings Retrying");
                     System.Threading.Thread.Sleep(10000);
                 }
             }
