@@ -59,7 +59,7 @@ namespace RepositoryManagerNet.API
         {
             MySqlConnection con = new MySqlConnection(conBuilder.GetConnectionString(true));
 
-            string Command = $"SELECT setting, vsetting FROM Settings;";
+            string Command = $"SELECT setting, vsettings FROM Settings;";
 
             MySqlCommand cmd = new MySqlCommand(Command, con);
             con.Open();
