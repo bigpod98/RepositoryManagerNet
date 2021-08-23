@@ -44,13 +44,9 @@ con.Open();
 foreach (string command in commands)
 {
     MySqlCommand cmd = new MySqlCommand(command, con);
-    try
-    {
-        cmd.ExecuteNonQuery();
-    }
-    catch (MySql.Data.MySqlClient.MySqlException ex)
-    {
-        
-    }
+
+    Console.WriteLine(cmd.CommandText);
+
+    cmd.ExecuteNonQuery();
 }
 
