@@ -32,13 +32,13 @@ MySqlConnection con = new MySqlConnection(conBuilder.GetConnectionString(true));
 List<string> commands = new List<string>()
             {
             "CREATE TABLE Repositories (ID int not NULL AUTO_INCREMENT, Name varchar(30) not null, PackageType varchar(10) not null, BaseDomain varchar(50) not null, PRIMARY KEY (ID));",
-            "CREATE TABLE Settings (setting varchar (64) not null, vsettings varchar(128) not null, PRIMARY KEY (setting)"
+            "CREATE TABLE Settings (setting varchar (64) not null, vsettings varchar(128) not null, PRIMARY KEY (setting));"
             };
 
+con.Open();
 foreach (string command in commands)
 {
     MySqlCommand cmd = new MySqlCommand(command, con);
-    con.Open();
 
     cmd.ExecuteNonQuery();
 }
