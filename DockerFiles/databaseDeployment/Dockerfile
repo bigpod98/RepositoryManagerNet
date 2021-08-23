@@ -3,7 +3,7 @@ RUN mkdir /build
 RUN mkdir /buildOutput
 COPY . /build
 WORKDIR /build
-RUN dotnet publish --configuration Release --output /buildOutput --runtime linux-x64
+RUN dotnet publish databaseDeployment/databaseDeployment.csproj --configuration Release --output /buildOutput --runtime linux-x64 -
 
 FROM mcr.microsoft.com/dotnet/runtime:6.0.0-preview.7-focal-amd64 AS RUNTIME
 COPY --from=BUILDER /buildOutput /opt/databaseDeployment
