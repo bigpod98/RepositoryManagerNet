@@ -11,7 +11,7 @@ using static RepositoryManagerNet.API.staticVariables;
 namespace RepositoryManagerNet.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class deregisterRepoController : ControllerBase
     {
         [HttpDelete]
