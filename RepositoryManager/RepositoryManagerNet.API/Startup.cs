@@ -55,8 +55,21 @@ namespace RepositoryManagerNet.API
                 Password = Settings.MYSQL_Password,
                 Port = Convert.ToUInt32(Settings.MYSQL_PORT)
             };
+            bool delta = true;
+            while (delta)
+            {
+                try
+                {
+                    Settings.getSettingsDB();
+                    delta = false;
+                    
+                }
+                catch (MySql.Data.MySqlClient.MySqlException ex)
+                {
+                    System.Threading.Thread.Sleep(10000);
+                }
+            }
 
-            Settings.getSettingsDB();
             //app.UseHttpsRedirection();
 
             app.UseRouting();
