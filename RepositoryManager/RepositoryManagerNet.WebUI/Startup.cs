@@ -26,6 +26,7 @@ namespace RepositoryManagerNet.WebUI
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UsePathBase("/webui");
             app.UseStaticFiles();
 
             app.UseRouting();
