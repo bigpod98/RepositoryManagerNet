@@ -22,11 +22,11 @@ namespace RepositoryManagerNet.WebUI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UsePathBase("/webui");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UsePathBase("/webui");
             app.UseStaticFiles();
 
             app.UseRouting();
