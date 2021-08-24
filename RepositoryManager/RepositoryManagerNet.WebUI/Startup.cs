@@ -29,7 +29,7 @@ namespace RepositoryManagerNet.WebUI
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseForwardedHeaders();
-            app.UsePathBase("webui");
+            app.UsePathBase("/webui");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

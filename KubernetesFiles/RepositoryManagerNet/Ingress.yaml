@@ -4,7 +4,6 @@ metadata:
   name: minimal-ingress
   namespace: repositorymanagernet
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
   rules:
