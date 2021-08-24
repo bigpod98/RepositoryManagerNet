@@ -15,7 +15,7 @@ namespace RepositoryManagerNet.WebUI.Pages
     public class IndexModel : PageModel
     {
         public static HttpClient client = new HttpClient()
-        {BaseAddress = new Uri("http://registrymanagernetapi.local") };
+        {BaseAddress = new Uri("http://registrymanagernetapi") };
 
 
         [BindProperty]
