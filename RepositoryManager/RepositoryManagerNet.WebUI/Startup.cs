@@ -25,11 +25,7 @@ namespace RepositoryManagerNet.WebUI
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UsePathBase(new PathString("/webui"));
-            app.UseStaticFiles(new StaticFileOptions()
-            {
-                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "wwwroot")),
-                RequestPath = "/webui"
-            }); 
+            app.UseStaticFiles();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
