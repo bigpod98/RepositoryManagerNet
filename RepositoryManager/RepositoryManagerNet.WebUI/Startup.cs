@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 
 namespace RepositoryManagerNet.WebUI
@@ -24,12 +25,17 @@ namespace RepositoryManagerNet.WebUI
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UsePathBase("/webui");
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "wwwroot")),
+                RequestPath = "/webui"
+            }); 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
             //app.UseStaticFiles();
-            app.UseStaticFiles("/webui");
+            
 
             app.UseRouting();
 
