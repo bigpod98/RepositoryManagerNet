@@ -1,21 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31612.314
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "databaseDeployment", "databaseDeployment\databaseDeployment.csproj", "{1B4ED052-68CA-4ED7-AE55-C9B9FFD07460}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "databaseDeployment", "databaseDeployment\databaseDeployment.csproj", "{1B4ED052-68CA-4ED7-AE55-C9B9FFD07460}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RepositoryManager", "RepositoryManager", "{F53B9A0E-DEFF-40C6-A177-3ED420F6B9E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APTPackageWatcher", "RepositoryManager\APTPackageWatcher\APTPackageWatcher.csproj", "{D69B91E2-A00F-4AAF-A24C-164EE7906820}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APTPackageWatcher", "RepositoryManager\APTPackageWatcher\APTPackageWatcher.csproj", "{D69B91E2-A00F-4AAF-A24C-164EE7906820}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPMPackageWatcher", "RepositoryManager\RPMPackageWatcher\RPMPackageWatcher.csproj", "{233EAB91-6ECB-42AA-AAC0-7E0F0E46C0A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPMPackageWatcher", "RepositoryManager\RPMPackageWatcher\RPMPackageWatcher.csproj", "{233EAB91-6ECB-42AA-AAC0-7E0F0E46C0A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacmanPackageWatcher", "RepositoryManager\PacmanPackageWatcher\PacmanPackageWatcher.csproj", "{20D69602-1623-41C4-855E-E40BACE532C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PacmanPackageWatcher", "RepositoryManager\PacmanPackageWatcher\PacmanPackageWatcher.csproj", "{20D69602-1623-41C4-855E-E40BACE532C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryManagerNet.API", "RepositoryManager\RepositoryManagerNet.API\RepositoryManagerNet.API.csproj", "{9B7F8972-23FE-4C30-9CE5-2E71662BB79D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepositoryManagerNet.API", "RepositoryManager\RepositoryManagerNet.API\RepositoryManagerNet.API.csproj", "{9B7F8972-23FE-4C30-9CE5-2E71662BB79D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryManagerNet.WebUI", "RepositoryManager\RepositoryManagerNet.WebUI\RepositoryManagerNet.WebUI.csproj", "{DF498723-CEB6-4918-BCC7-AA2DBB543907}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepositoryManagerNet.WebUI", "RepositoryManager\RepositoryManagerNet.WebUI\RepositoryManagerNet.WebUI.csproj", "{DF498723-CEB6-4918-BCC7-AA2DBB543907}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,9 +25,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{1B4ED052-68CA-4ED7-AE55-C9B9FFD07460}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -103,11 +100,17 @@ Global
 		{DF498723-CEB6-4918-BCC7-AA2DBB543907}.Release|x86.ActiveCfg = Release|Any CPU
 		{DF498723-CEB6-4918-BCC7-AA2DBB543907}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D69B91E2-A00F-4AAF-A24C-164EE7906820} = {F53B9A0E-DEFF-40C6-A177-3ED420F6B9E9}
 		{233EAB91-6ECB-42AA-AAC0-7E0F0E46C0A5} = {F53B9A0E-DEFF-40C6-A177-3ED420F6B9E9}
 		{20D69602-1623-41C4-855E-E40BACE532C7} = {F53B9A0E-DEFF-40C6-A177-3ED420F6B9E9}
 		{9B7F8972-23FE-4C30-9CE5-2E71662BB79D} = {F53B9A0E-DEFF-40C6-A177-3ED420F6B9E9}
 		{DF498723-CEB6-4918-BCC7-AA2DBB543907} = {F53B9A0E-DEFF-40C6-A177-3ED420F6B9E9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D2CEC6EE-4C3D-44E4-B659-02EB4356DE82}
 	EndGlobalSection
 EndGlobal

@@ -3,7 +3,6 @@ kind: Ingress
 metadata:
   name: minimal-ingress
   namespace: repositorymanagernet
-  annotations:
 spec:
   ingressClassName: nginx
   rules:
