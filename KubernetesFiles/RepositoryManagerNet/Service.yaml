@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: registrymanagernetapi
+  name: repositorymanagernetapi
   namespace: repositorymanagernet
 spec:
   type: ClusterIP
@@ -16,7 +16,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: registrymanagernetwebui
+  name: repositorymanagernetwebui
   namespace: repositorymanagernet
 spec:
   type: ClusterIP
