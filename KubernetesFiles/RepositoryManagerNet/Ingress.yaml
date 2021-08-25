@@ -13,13 +13,13 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: registrymanagernetapi
+            name: repositorymanagernetapi
             port:
               number: 80
       - path: /webui
         pathType: Prefix
         backend:
           service:
-            name: registrymanagernetwebui
+            name: repositorymanagernetwebui
             port:
               number: 80
