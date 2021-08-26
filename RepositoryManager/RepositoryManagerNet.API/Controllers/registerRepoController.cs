@@ -59,10 +59,10 @@ namespace RepositoryManagerNet.API.Controllers
             KubeObject.Spec.Selector.MatchLabels["app"] = RepoData.Name;
             KubeObject.Spec.Template.Metadata.Labels["app"] = RepoData.Name;
             KubeObject.Spec.Template.Spec.InitContainers[0].Name = $"{RepoData.Name}-init";
-            KubeObject.Spec.Template.Spec.InitContainers[0].Image = "";
+            KubeObject.Spec.Template.Spec.InitContainers[0].Image = getPackageType(RepoData.PackageType, false);
             KubeObject.Spec.Template.Spec.InitContainers[0].Env[0].Value = "";
             KubeObject.Spec.Template.Spec.Containers[0].Name = RepoData.Name;
-            KubeObject.Spec.Template.Spec.Containers[0].Image = Settings.ContainerImages.APTRepository;
+            KubeObject.Spec.Template.Spec.Containers[0].Image = getPackageType(RepoData.PackageType, true);
             KubeObject.Spec.Template.Spec.Containers[1].Name = $"{RepoData.Name}-server";
             KubeObject.Spec.Template.Spec.ImagePullSecrets[0].Name = "";
             KubeObject.Spec.Template.Spec.Volumes[0].PersistentVolumeClaim.ClaimName = $"{RepoData.Name}-pvc";
@@ -70,6 +70,49 @@ namespace RepositoryManagerNet.API.Controllers
 
 
             return KubeObject;
+        }
+
+        public static string getPackageType(string type, bool isWatcher)
+        {
+            string x = "";
+            if (isWatcher)
+            {
+                switch (type)
+                {
+                    case "APT":
+                        x = Settings.ContainerImages.APTRepository;
+                        break;
+                    case "Pacman":
+                        x = Settings.ContainerImages.PacmanRepository;
+                        break;
+                    case "RPM":
+                        x = Settings.ContainerImages.RPMRepository;
+                        break;
+                    default:
+                        x = Settings.ContainerImages.APTRepository;
+                        break;
+                }
+            }
+            else
+            {
+                switch (type)
+                {
+                    case "APT":
+                        x = Settings.ContainerImages.InitAPTRepository;
+                        break;
+                    case "Pacman":
+                        x = Settings.ContainerImages.InitPacmanRepository;
+                        break;
+                    case "RPM":
+                        x = Settings.ContainerImages.InitRPMRepository;
+                        break;
+                    default:
+                        x = Settings.ContainerImages.InitAPTRepository;
+                        break;
+                }
+            }
+
+            return x;
         }
 
         public static k8s.Models.V1Service Service(Models.RepoData RepoData)

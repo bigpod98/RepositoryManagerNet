@@ -22,6 +22,9 @@ namespace RepositoryManagerNet.API
             public static string APTRepository;
             public static string RPMRepository;
             public static string PacmanRepository;
+            public static string InitAPTRepository;
+            public static string InitRPMRepository;
+            public static string InitPacmanRepository;
         }
 
         public static void getSettingsENV()
@@ -86,6 +89,15 @@ namespace RepositoryManagerNet.API
                     case "PacmanRepository":
                         ContainerImages.PacmanRepository = reader.GetString("vsettings");
                         break;
+                    case "InitAPTRepository":
+                        ContainerImages.APTRepository = reader.GetString("vsettings");
+                        break;
+                    case "InitRPMRepository":
+                        ContainerImages.RPMRepository = reader.GetString("vsettings");
+                        break;
+                    case "InitPacmanRepository":
+                        ContainerImages.PacmanRepository = reader.GetString("vsettings");
+                        break;
                 }
             }
 
@@ -108,6 +120,18 @@ namespace RepositoryManagerNet.API
             if (ContainerImages.PacmanRepository == "")
             {
                 Console.WriteLine("No Pacman Repository image defined");
+            }
+            if (ContainerImages.InitAPTRepository == "")
+            {
+                Console.WriteLine("No Init APT Repository image defined");
+            }
+            if (ContainerImages.InitRPMRepository == "")
+            {
+                Console.WriteLine("No Init RPM Repository image defined");
+            }
+            if (ContainerImages.InitPacmanRepository == "")
+            {
+                Console.WriteLine("No Init Pacman Repository image defined");
             }
         }
     }
