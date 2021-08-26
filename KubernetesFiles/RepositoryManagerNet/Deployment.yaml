@@ -52,3 +52,26 @@ spec:
           value: "3306"
         ports:
         - containerPort: 80
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: repositorymanagernetuploadapi
+  namespace: repositorymanagernet
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rmn-uploadapi
+  template:
+    metadata:
+      labels:
+        app: rmn-uploadapi
+    spec:
+      containers:
+      - image: ghcr.io/bigpod98/repositorymanagernetuploadapi:latest
+        name: rmn-uploadapi
+        ports:
+        - containerPort: 80
