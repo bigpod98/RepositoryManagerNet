@@ -33,15 +33,21 @@ namespace RepositoryManagerNet.API.Controllers
             KubeClient.CreateNamespacedService(Service(RepositoryData), Settings.KubernetesNamespace);
             KubeClient.CreateNamespacedIngress(Ingress(RepositoryData), Settings.KubernetesNamespace);
             KubeClient.CreateNamespacedPersistentVolumeClaim(PVC(RepositoryData), Settings.KubernetesNamespace);
+            KubeClient.CreateNamespacedPersistentVolumeClaim(PVCIncoming(RepositoryData), Settings.KubernetesNamespace);
 
             var  x = KubeClient.ReadNamespacedDeployment("repositorymanagernetuploadapi", Settings.KubernetesNamespace);
-            x.Spec.Template.Spec.Containers[0].VolumeMounts.Add(new k8s.Models.V1VolumeMount());
-            x.Spec.Template.Spec.Volumes.Add(new k8s.Models.V1Volume());
+            var y = x.Spec.Template.Spec.Containers[0].VolumeMounts[0];
+            y.MountPath = $"/incoming/{RepositoryData.Name}";
+            y.Name = $"{RepositoryData.Name}-incoming";
+            x.Spec.Template.Spec.Containers[0].VolumeMounts.Add(y);
+            var z = x.Spec.Template.Spec.Volumes[0];
+            z.Name = $"{RepositoryData.Name}-incoming";
+            z.PersistentVolumeClaim.ClaimName = $"{RepositoryData.Name}-incoming";
+            x.Spec.Template.Spec.Volumes.Add(z);
             KubeClient.ReplaceNamespacedDeployment(x, "repositorymanagernetuploadapi", Settings.KubernetesNamespace);    
 
             return RepositoryData.Name;
         }
-
 
 
         public static k8s.Models.V1Deployment Deployment(Models.RepoData RepoData)
@@ -93,6 +99,16 @@ namespace RepositoryManagerNet.API.Controllers
             k8s.Models.V1PersistentVolumeClaim KubeObject = k8s.Yaml.LoadFromFileAsync<k8s.Models.V1PersistentVolumeClaim>("/KubernetesObjects/PVC.yaml").Result;
 
             KubeObject.Metadata.Name = $"{RepoData.Name}-pvc";
+            KubeObject.Metadata.NamespaceProperty = Settings.KubernetesNamespace;
+            KubeObject.Spec.StorageClassName = Settings.StorageClass;
+
+            return KubeObject;
+        }
+        public static k8s.Models.V1PersistentVolumeClaim PVCIncoming(Models.RepoData RepoData)
+        {
+            k8s.Models.V1PersistentVolumeClaim KubeObject = k8s.Yaml.LoadFromFileAsync<k8s.Models.V1PersistentVolumeClaim>("/KubernetesObjects/PVC.yaml").Result;
+
+            KubeObject.Metadata.Name = $"{RepoData.Name}-incoming-pvc";
             KubeObject.Metadata.NamespaceProperty = Settings.KubernetesNamespace;
             KubeObject.Spec.StorageClassName = Settings.StorageClass;
 

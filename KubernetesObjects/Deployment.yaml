@@ -13,12 +13,22 @@ spec:
       labels:
         app: nameofmirror
     spec:
+      volumes:
+        - name: repoVolume
+          persistentVolumeClaim:
+            claimName: claimname
+        - name: incomingData
+          persistentVolumeClaim:
+            claimName: claimname
       initContainers:
-        - name: nameofmirror-init
+        - name: nameofrepo-init
           image: initimage
           env:
-            - name: "MIRROR_LINKS"
-              value: "links"
+            - name: "repo_name"
+              value: "name"
+          volumeMounts:
+            - mountPath: /repository
+              name: repoVolume
       containers:
         - name: nameofmirror
           image: image
@@ -27,6 +37,9 @@ spec:
               memory: 1Gi
               cpu: "500m"
           imagePullPolicy: "IfNotPresent"
+          volumeMounts:
+            - mountPath: /repository
+              name: repoVolume
         - name: nameofmirror-server
           image: nginx
           resources:
@@ -36,5 +49,8 @@ spec:
           imagePullPolicy: "IfNotPresent"
           ports:
             - containerPort: 80
+          volumeMounts:
+            - mountPath: /repository
+              name: repoVolume
       imagePullSecrets:
         - name: imagepullsecret
