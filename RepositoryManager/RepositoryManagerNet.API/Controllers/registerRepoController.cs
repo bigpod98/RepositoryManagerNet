@@ -65,6 +65,8 @@ namespace RepositoryManagerNet.API.Controllers
             KubeObject.Spec.Template.Spec.Containers[0].Image = Settings.ContainerImages.APTRepository;
             KubeObject.Spec.Template.Spec.Containers[1].Name = $"{RepoData.Name}-server";
             KubeObject.Spec.Template.Spec.ImagePullSecrets[0].Name = "";
+            KubeObject.Spec.Template.Spec.Volumes[0].PersistentVolumeClaim.ClaimName = $"{RepoData.Name}-pvc";
+            KubeObject.Spec.Template.Spec.Volumes[1].PersistentVolumeClaim.ClaimName = $"{RepoData.Name}-incoming-pvc";
 
 
             return KubeObject;

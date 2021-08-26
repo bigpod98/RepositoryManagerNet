@@ -40,6 +40,8 @@ spec:
           volumeMounts:
             - mountPath: /repository
               name: repoVolume
+            - mountPath: /incoming
+              name: incomingData
         - name: nameofmirror-server
           image: nginx
           resources:
