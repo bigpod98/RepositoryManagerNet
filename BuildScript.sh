@@ -5,6 +5,9 @@ docker build -t ghcr.io/bigpod98/repositorymanagernetapi:latest -f DockerFiles/R
 docker build -t ghcr.io/bigpod98/repositorymanagernetuploadapi:latest -f DockerFiles/RepositoryManagerNet.UploadAPI/Dockerfile . --no-cache
 docker build -t ghcr.io/bigpod98/repositorymanagernetwebui:latest -f DockerFiles/RepositoryManagerNet.WebUI/Dockerfile . --no-cache
 docker build -t ghcr.io/bigpod98/rpmpackagewatcher:latest -f DockerFiles/RPMPackageWatcher/Dockerfile . --no-cache
+docker build -t ghcr.io/bigpod98/rmn-aptrepoinit:latest - Dockerfile/Scripts/APTRepoInit/Dockerfile . --no-cache
+docker build -t ghcr.io/bigpod98/rmn-rpmrepoinit:latest - Dockerfile/Scripts/RPMRepoInit/Dockerfile . --no-cache
+docker build -t ghcr.io/bigpod98/rmn-pacmanrepoinit:latest - Dockerfile/Scripts/PacmanRepoInit/Dockerfile . --no-cache
 docker push ghcr.io/bigpod98/aptpackagewatcher:latest
 docker push ghcr.io/bigpod98/databasedeployment:latest
 docker push ghcr.io/bigpod98/pacmanpackagewatcher:latest
@@ -12,3 +15,6 @@ docker push ghcr.io/bigpod98/repositorymanagernetapi:latest
 docker push ghcr.io/bigpod98/repositorymanagernetuploadapi:latest
 docker push ghcr.io/bigpod98/repositorymanagernetwebui:latest
 docker push ghcr.io/bigpod98/rpmpackagewatcher:latest
+docker push ghcr.io/bigpod98/rmn-aptrepoinit:latest
+docker push ghcr.io/bigpod98/rmn-rpmrepoinit:latest
+docker push ghcr.io/bigpod98/rmn-pacmanrepoinit:latest
