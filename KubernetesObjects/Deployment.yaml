@@ -26,6 +26,8 @@ spec:
           env:
             - name: "repo_name"
               value: "name"
+            - name: "codename"
+              value: "codename"
           volumeMounts:
             - mountPath: /repository
               name: repoVolume
