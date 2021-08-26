@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepositoryManagerNet.API", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepositoryManagerNet.WebUI", "RepositoryManager\RepositoryManagerNet.WebUI\RepositoryManagerNet.WebUI.csproj", "{DF498723-CEB6-4918-BCC7-AA2DBB543907}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryManagerNet.UploadAPI", "RepositoryManager\RepositoryManagerNet.UploadAPI\RepositoryManagerNet.UploadAPI.csproj", "{147ACD03-9E30-42CB-924C-0167BCBBC984}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,18 @@ Global
 		{DF498723-CEB6-4918-BCC7-AA2DBB543907}.Release|x64.Build.0 = Release|Any CPU
 		{DF498723-CEB6-4918-BCC7-AA2DBB543907}.Release|x86.ActiveCfg = Release|Any CPU
 		{DF498723-CEB6-4918-BCC7-AA2DBB543907}.Release|x86.Build.0 = Release|Any CPU
+		{147ACD03-9E30-42CB-924C-0167BCBBC984}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{147ACD03-9E30-42CB-924C-0167BCBBC984}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{147ACD03-9E30-42CB-924C-0167BCBBC984}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{147ACD03-9E30-42CB-924C-0167BCBBC984}.Debug|x64.Build.0 = Debug|Any CPU
+		{147ACD03-9E30-42CB-924C-0167BCBBC984}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{147ACD03-9E30-42CB-924C-0167BCBBC984}.Debug|x86.Build.0 = Debug|Any CPU
+		{147ACD03-9E30-42CB-924C-0167BCBBC984}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{147ACD03-9E30-42CB-924C-0167BCBBC984}.Release|Any CPU.Build.0 = Release|Any CPU
+		{147ACD03-9E30-42CB-924C-0167BCBBC984}.Release|x64.ActiveCfg = Release|Any CPU
+		{147ACD03-9E30-42CB-924C-0167BCBBC984}.Release|x64.Build.0 = Release|Any CPU
+		{147ACD03-9E30-42CB-924C-0167BCBBC984}.Release|x86.ActiveCfg = Release|Any CPU
+		{147ACD03-9E30-42CB-924C-0167BCBBC984}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -109,6 +123,7 @@ Global
 		{20D69602-1623-41C4-855E-E40BACE532C7} = {F53B9A0E-DEFF-40C6-A177-3ED420F6B9E9}
 		{9B7F8972-23FE-4C30-9CE5-2E71662BB79D} = {F53B9A0E-DEFF-40C6-A177-3ED420F6B9E9}
 		{DF498723-CEB6-4918-BCC7-AA2DBB543907} = {F53B9A0E-DEFF-40C6-A177-3ED420F6B9E9}
+		{147ACD03-9E30-42CB-924C-0167BCBBC984} = {F53B9A0E-DEFF-40C6-A177-3ED420F6B9E9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D2CEC6EE-4C3D-44E4-B659-02EB4356DE82}
