@@ -20,7 +20,7 @@ namespace RepositoryManagerNet.API.Controllers
             MySqlConnection con = new MySqlConnection(conBuilder.GetConnectionString(true));
 
             string Command = $"INSERT INTO Repositories (Name, PackageType, BaseDomain) VALUES (@Name, @PackageType, @BaseDomain)";
-            
+
             MySqlCommand cmd = new MySqlCommand(Command, con);
             cmd.Parameters.AddWithValue("@Name", RepositoryData.Name);
             cmd.Parameters.AddWithValue("@PackageType", RepositoryData.PackageType);
@@ -34,8 +34,15 @@ namespace RepositoryManagerNet.API.Controllers
             KubeClient.CreateNamespacedIngress(Ingress(RepositoryData), Settings.KubernetesNamespace);
             KubeClient.CreateNamespacedPersistentVolumeClaim(PVC(RepositoryData), Settings.KubernetesNamespace);
 
+            var  x = KubeClient.ReadNamespacedDeployment("repositorymanagernetuploadapi", Settings.KubernetesNamespace);
+            x.Spec.Template.Spec.Containers[0].VolumeMounts.Add(new k8s.Models.V1VolumeMount());
+            x.Spec.Template.Spec.Volumes.Add(new k8s.Models.V1Volume());
+            KubeClient.ReplaceNamespacedDeployment(x, "repositorymanagernetuploadapi", Settings.KubernetesNamespace);    
+
             return RepositoryData.Name;
         }
+
+
 
         public static k8s.Models.V1Deployment Deployment(Models.RepoData RepoData)
         {
