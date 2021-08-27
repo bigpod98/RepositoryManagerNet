@@ -67,6 +67,8 @@ namespace RepositoryManagerNet.API.Controllers
                     reader.GetString("PackageType"), reader.GetString("BaseDomain")));
             }
 
+            Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(repos));
+            
             return repos;
         }
     }
