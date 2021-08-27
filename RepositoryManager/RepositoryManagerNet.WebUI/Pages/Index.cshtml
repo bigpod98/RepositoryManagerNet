@@ -3,12 +3,11 @@
 @using System.Text.Json
 @model RepositoryManagerNet.WebUI.Pages.IndexModel
 @{
-    List<RepositoryManagerNet.WebUI.Models.RepoData> Repos = new List<RepositoryManagerNet.WebUI.Models.RepoData>();
     HttpResponseMessage responseMessage = await IndexModel.client.GetAsync("api/repo");
     var body = await responseMessage.Content.ReadAsStringAsync();
     Console.WriteLine(body);
-    Repos = JsonSerializer.Deserialize<List<RepositoryManagerNet.WebUI.Models.RepoData>>(body);
-    Console.WriteLine(Repos[0].ID);
+    var Repos = JsonSerializer.Deserialize<RepositoryManagerNet.WebUI.Models.RepoDataList>(body);
+    Console.WriteLine(Repos.Repodata[0].ID);
 }
 <head>
     <link rel="stylesheet" href="css/style.css"> 
@@ -33,8 +32,9 @@
                  
             </th>
         </tr>
-        @foreach (RepositoryManagerNet.WebUI.Models.RepoData i in Repos)
+        @foreach (RepositoryManagerNet.WebUI.Models.RepoData i in Repos.Repodata)
         {
+            
             <tr>
                 <td>
                     @i.ID;
@@ -49,7 +49,7 @@
                     @i.BaseDomain
                 </td>
                 <td>
-                    <a asp-page="/Repository/@i.ID">Details</a><br />
+                    <a asp-page="/Repository/">Details</a><br />
                     <a asp-page="/edit/@i.ID">EDIT</a><br />
                 </td>
             </tr>

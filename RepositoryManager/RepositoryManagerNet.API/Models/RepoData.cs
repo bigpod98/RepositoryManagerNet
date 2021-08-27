@@ -17,6 +17,11 @@ namespace RepositoryManagerNet.API.Models
         public int ID { get; set; }
         public string Name { get; set; }
         public string PackageType { get; set; }
-        public string BaseDomain {get;set;}
+        public string BaseDomain { get; set; }
     }
+    public class RepoDatax
+    {
+        public List<RepoData> RepoData {  get; set; }
+    }
+
 }
