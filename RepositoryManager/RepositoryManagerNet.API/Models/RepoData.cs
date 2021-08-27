@@ -19,9 +19,4 @@ namespace RepositoryManagerNet.API.Models
         public string PackageType { get; set; }
         public string BaseDomain { get; set; }
     }
-    public class RepoDatax
-    {
-        public List<RepoData> RepoData {  get; set; }
-    }
-
 }

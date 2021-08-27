@@ -48,7 +48,7 @@ namespace RepositoryManagerNet.API.Controllers
         }
 
         [HttpGet()]
-        public List<Models.RepoData> Get()
+        public Models.RepoDataList Get()
         {
             MySqlConnection con = new MySqlConnection(conBuilder.GetConnectionString(true));
 
@@ -59,11 +59,11 @@ namespace RepositoryManagerNet.API.Controllers
 
             MySqlDataReader reader = cmd.ExecuteReader();
 
-            List<Models.RepoData> repos = new List<Models.RepoData>();
+            var repos = new Models.RepoDataList();
             while (reader.Read())
             {
                 Console.WriteLine(reader.GetString("Name"));
-                repos.Add(new Models.RepoData(reader.GetInt32("ID"), reader.GetString("Name"),
+                repos.Repodata.Add(new Models.RepoData(reader.GetInt32("ID"), reader.GetString("Name"),
                     reader.GetString("PackageType"), reader.GetString("BaseDomain")));
             }
 
