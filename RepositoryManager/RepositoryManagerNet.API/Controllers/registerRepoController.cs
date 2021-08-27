@@ -11,7 +11,7 @@ using static RepositoryManagerNet.API.staticVariables;
 namespace RepositoryManagerNet.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class registerRepoController : ControllerBase
     {
         [HttpPost]
