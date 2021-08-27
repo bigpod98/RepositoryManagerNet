@@ -23,3 +23,10 @@ spec:
             name: repositorymanagernetwebui
             port:
               number: 80
+      - path: /api/upload
+        pathType: Prefix
+        backend:
+          service:
+            name: repositorymanagernetuploadapi
+            port:
+              number: 80
