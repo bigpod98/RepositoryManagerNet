@@ -4,7 +4,7 @@
 @model RepositoryManagerNet.WebUI.Pages.IndexModel
 @{
     List<RepositoryManagerNet.WebUI.Models.RepoData> Repos = new List<RepositoryManagerNet.WebUI.Models.RepoData>();
-    HttpResponseMessage responseMessage = await IndexModel.client.GetAsync("repo");
+    HttpResponseMessage responseMessage = await IndexModel.client.GetAsync("api/repo");
     var body = await responseMessage.Content.ReadAsStringAsync();
     Console.WriteLine(body);
     Repos = JsonSerializer.Deserialize<List<RepositoryManagerNet.WebUI.Models.RepoData>>(body);
