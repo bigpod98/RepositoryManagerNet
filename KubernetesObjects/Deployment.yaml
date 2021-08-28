@@ -1,38 +1,38 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nameofmirror
-  namespace: namespace
+  name: nameofrepo
+  namespace: namespacetemplate
 spec:
   selector:
     matchLabels:
-      app: nameofmirror
+      app: nameofrepo
   replicas: 1
   template:
     metadata:
       labels:
-        app: nameofmirror
+        app: nameofrepo
     spec:
       volumes:
-        - name: repoVolume
+        - name: repovolume
           persistentVolumeClaim:
-            claimName: claimname
-        - name: incomingData
+            claimName: claimnameRV
+        - name: incomingdata
           persistentVolumeClaim:
-            claimName: claimname
+            claimName: claimnameID
       initContainers:
         - name: nameofrepo-init
           image: initimage
           env:
             - name: "repo_name"
-              value: "name"
+              value: "@repositoryname"
             - name: "codename"
               value: "codename"
           volumeMounts:
             - mountPath: /repository
-              name: repoVolume
+              name: repovolume
       containers:
-        - name: nameofmirror
+        - name: nameofrepo
           image: image
           resources:
             limits:
@@ -41,10 +41,10 @@ spec:
           imagePullPolicy: "IfNotPresent"
           volumeMounts:
             - mountPath: /repository
-              name: repoVolume
+              name: repovolume
             - mountPath: /incoming
               name: incomingData
-        - name: nameofmirror-server
+        - name: nameofrepo-server
           image: nginx
           resources:
             limits:
@@ -55,6 +55,6 @@ spec:
             - containerPort: 80
           volumeMounts:
             - mountPath: /repository
-              name: repoVolume
+              name: repovolume
       imagePullSecrets:
-        - name: imagepullsecret
+        - name: imagepullsecrettemplate

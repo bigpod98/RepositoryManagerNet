@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using MySql.Data.MySqlClient;
 using k8s;
 using static RepositoryManagerNet.API.staticVariables;
+using System.Diagnostics;
 
 namespace RepositoryManagerNet.API.Controllers
 {
@@ -29,27 +30,34 @@ namespace RepositoryManagerNet.API.Controllers
 
             cmd.ExecuteNonQuery();
 
-            KubeClient.CreateNamespacedDeployment(Deployment(RepositoryData), Settings.KubernetesNamespace);
-            KubeClient.CreateNamespacedService(Service(RepositoryData), Settings.KubernetesNamespace);
-            KubeClient.CreateNamespacedIngress(Ingress(RepositoryData), Settings.KubernetesNamespace);
-            KubeClient.CreateNamespacedPersistentVolumeClaim(PVC(RepositoryData), Settings.KubernetesNamespace);
-            KubeClient.CreateNamespacedPersistentVolumeClaim(PVCIncoming(RepositoryData), Settings.KubernetesNamespace);
+            #region noncode
+            //KubeClient.CreateNamespacedDeployment(Deployment(RepositoryData), Settings.KubernetesNamespace);
+            //KubeClient.CreateNamespacedService(Service(RepositoryData), Settings.KubernetesNamespace);
+            //KubeClient.CreateNamespacedIngress(Ingress(RepositoryData), Settings.KubernetesNamespace);
+            //KubeClient.CreateNamespacedPersistentVolumeClaim(PVC(RepositoryData), Settings.KubernetesNamespace);
+            //KubeClient.CreateNamespacedPersistentVolumeClaim(PVCIncoming(RepositoryData), Settings.KubernetesNamespace);
 
-            var  x = KubeClient.ReadNamespacedDeployment("repositorymanagernetuploadapi", Settings.KubernetesNamespace);
-            var y = x.Spec.Template.Spec.Containers[0].VolumeMounts[0];
-            y.MountPath = $"/incoming/{RepositoryData.Name}";
-            y.Name = $"{RepositoryData.Name}-incoming";
-            x.Spec.Template.Spec.Containers[0].VolumeMounts.Add(y);
-            var z = x.Spec.Template.Spec.Volumes[0];
-            z.Name = $"{RepositoryData.Name}-incoming";
-            z.PersistentVolumeClaim.ClaimName = $"{RepositoryData.Name}-incoming";
-            x.Spec.Template.Spec.Volumes.Add(z);
-            KubeClient.ReplaceNamespacedDeployment(x, "repositorymanagernetuploadapi", Settings.KubernetesNamespace);    
+            //var  x = KubeClient.ReadNamespacedDeployment("repositorymanagernetuploadapi", Settings.KubernetesNamespace);
+            //var y = x.Spec.Template.Spec.Containers[0].VolumeMounts[0];
+            //y.MountPath = $"/incoming/{RepositoryData.Name}";
+            //y.Name = $"{RepositoryData.Name}-incoming";
+            //x.Spec.Template.Spec.Containers[0].VolumeMounts.Add(y);
+            //var z = x.Spec.Template.Spec.Volumes[0];
+            //z.Name = $"{RepositoryData.Name}-incoming";
+            //z.PersistentVolumeClaim.ClaimName = $"{RepositoryData.Name}-incoming";
+            //x.Spec.Template.Spec.Volumes.Add(z);
+            //KubeClient.ReplaceNamespacedDeployment(x, "repositorymanagernetuploadapi", Settings.KubernetesNamespace);    
+            #endregion
 
+            deploybyhand.deployProcess(deploybyhand.CreateDeployment(RepositoryData));
+            deploybyhand.deployProcess(deploybyhand.CreateService(RepositoryData));
+            deploybyhand.deployProcess(deploybyhand.CreateIngress(RepositoryData));
+            deploybyhand.deployProcess(deploybyhand.CreatePersistentVolumeClaim_a(RepositoryData));
+            deploybyhand.deployProcess(deploybyhand.CreatePersistentVolumeClaim_b(RepositoryData));
             return RepositoryData.Name;
         }
 
-
+        #region nonworking code
         public static k8s.Models.V1Deployment Deployment(Models.RepoData RepoData)
         {
             k8s.Models.V1Deployment KubeObject = k8s.Yaml.LoadFromFileAsync<k8s.Models.V1Deployment>("/KubernetesObjects/Deployment.yaml").Result;
@@ -159,5 +167,83 @@ namespace RepositoryManagerNet.API.Controllers
 
             return KubeObject;
         }
+        #endregion
+        
+        public static class deploybyhand
+        {
+            public static string CreateDeployment(Models.RepoData RepositoryData)
+            {
+                string deploy = System.IO.File.ReadAllText("/KubernetesObjects/Deployment.yaml");
+                deploy = deploy.Replace("nameofrepo", RepositoryData.Name);
+                deploy = deploy.Replace("namespacetemplate", Settings.KubernetesNamespace);
+                deploy = deploy.Replace("claimnameRV", $"{RepositoryData.Name}-pvc");
+                deploy = deploy.Replace("claimnameID", $"{RepositoryData.Name}-incoming-pvc");
+                deploy = deploy.Replace("imagepullsecrettemplate", "iimagepullsecrettemplate");
+
+                return deploy;
+            }
+            public static string CreateService(Models.RepoData RepositoryData)
+            {
+                string deploy = System.IO.File.ReadAllText("/KubernetesObjects/Service.yaml");
+
+                deploy = deploy.Replace("nameofrepo", RepositoryData.Name);
+                deploy = deploy.Replace("namespacetemplate", Settings.KubernetesNamespace);
+
+                return deploy;
+            }
+            public static string CreateIngress(Models.RepoData RepositoryData)
+            {
+                string deploy = System.IO.File.ReadAllText("/KubernetesObjects/Ingress.yaml");
+
+                deploy = deploy.Replace("nameofrepo", RepositoryData.Name);
+                deploy = deploy.Replace("namespacetemplate", Settings.KubernetesNamespace);
+                deploy = deploy.Replace("hostlink", RepositoryData.BaseDomain);
+                deploy = deploy.Replace("repopath", $"/repository/linux/{RepositoryData.Name}");
+
+                return deploy;
+            }
+            public static string CreatePersistentVolumeClaim_a(Models.RepoData RepositoryData)
+            {
+                string deploy = System.IO.File.ReadAllText("/KubernetesObjects/PVC.yaml");
+
+                deploy = deploy.Replace("nameofrepo", $"{RepositoryData.Name}-pvc");
+                deploy = deploy.Replace("namespacetemplate", Settings.KubernetesNamespace);
+                deploy = deploy.Replace("storageclassnamex", Settings.StorageClass);
+
+                return deploy;
+            }
+            public static string CreatePersistentVolumeClaim_b(Models.RepoData RepositoryData)
+            {
+                string deploy = System.IO.File.ReadAllText("/KubernetesObjects/PVC.yaml");
+
+                deploy = deploy.Replace("nameofrepo", $"{RepositoryData.Name}-incoming-pvc");
+                deploy = deploy.Replace("namespacetemplate", Settings.KubernetesNamespace);
+                deploy = deploy.Replace("storageclassnamex", Settings.StorageClass);
+
+                return deploy;
+            
+            }
+
+            public static void deployProcess(string x)
+            {
+                Random a = new Random();
+                string b = a.Next(1000000, 9999999).ToString();
+
+                string filename = $"{b}.yaml";
+                string path = $"/temp/{filename}";
+                System.IO.File.WriteAllText(path, x);
+
+                Process p = new Process();
+                p.StartInfo.FileName = "kubectl";
+                p.StartInfo.Arguments = $"apply -f {path}";
+                p.StartInfo.UseShellExecute = true;
+                p.Start();
+                p.WaitForExit();
+
+                System.IO.File.Delete(path);
+
+            }
+        }
+
     }
 }

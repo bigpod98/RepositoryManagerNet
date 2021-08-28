@@ -1,20 +1,20 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: mirrorname
-  namespace: namespace
+  name: nameofrepo
+  namespace: namespacetemplate
   annotations:
     kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   rules:
-  - host: "host"
+  - host: "hostlink"
     http:
       paths:
-      - path: "path"
+      - path: "repopath"
         pathType: Prefix
         backend:
           service:
-            name: nameofservice
+            name: nameofrepo
             port:
               number: 80
