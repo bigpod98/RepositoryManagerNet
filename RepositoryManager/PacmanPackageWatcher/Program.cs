@@ -28,7 +28,10 @@ while (true)
 
             p.StartInfo.FileName = "repo-add";
             p.StartInfo.Arguments = $"{repoLocation}/{name}.db.tar.gz /{repoLocation}/{i.Name}";
-
+            p.StartInfo.UseShellExecute = true;
+            p.StartInfo.RedirectStandardOutput = true;
+            p.Start();
+            p.WaitForExit();
         }
     }
 

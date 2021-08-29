@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 string WatchLocation = "/Watch";
 string repoLocation = "/repository";
+string codename = Environment.GetEnvironmentVariable("CODENAME");
 System.IO.DirectoryInfo WatchDir = new System.IO.DirectoryInfo(WatchLocation);
 while (true)
 {
@@ -18,7 +20,17 @@ while (true)
         foreach (System.IO.FileInfo i in files)
         {
             Console.WriteLine(i.FullName);
-            //code for adding to repo
+
+            //reprepro -b repo/ includedeb trusty jake_1.0-7_amd64.deb
+            Process p = new Process();
+
+            p.StartInfo.FileName = "reprepro";
+            p.StartInfo.Arguments = $"-b {repoLocation}/ includedeb {codename} {i.FullName}";
+            p.StartInfo.UseShellExecute = true;
+            p.StartInfo.RedirectStandardOutput = true;
+            p.Start();
+            p.WaitForExit();
+
         }
     }
 
