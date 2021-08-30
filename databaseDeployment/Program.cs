@@ -33,11 +33,15 @@ List<string> commands = new List<string>()
             {
             "CREATE TABLE Repositories (ID int not NULL AUTO_INCREMENT, Name varchar(30) not null, PackageType varchar(10) not null, BaseDomain varchar(50) not null, PRIMARY KEY (ID));",
             "CREATE TABLE Settings (setting varchar (64) not null, vsettings varchar(128), PRIMARY KEY (setting));",
-            "INSERT INTO Settings (setting, vsettings) VALUES (\"StorageClass\", \"pajdsiek-nfs\");",
+            "INSERT INTO Settings (setting, vsettings) VALUES (\"StorageClass\", \"pajdisek-nfs\");",
             "INSERT INTO Settings (setting, vsettings) VALUES (\"KubernetesNamespace\", \"repositorymanagernet\");",
             "INSERT INTO Settings (setting, vsettings) VALUES (\"APTRepository\", \"ghcr.io/bigpod98/aptpackagewatcher:latest\");",
             "INSERT INTO Settings (setting, vsettings) VALUES (\"RPMRepository\", \"ghcr.io/bigpod98/rpmpackagewatcher:latest\");",
-            "INSERT INTO Settings (setting, vsettings) VALUES (\"PacmanRepository\", \"ghcr.io/bigpod98/pacmanpackagewatcher:latest\");"
+            "INSERT INTO Settings (setting, vsettings) VALUES (\"PacmanRepository\", \"ghcr.io/bigpod98/pacmanpackagewatcher:latest\");",
+            "INSERT INTO Settings (setting, vsettings) VALUES (\"APTRepository\", \"ghcr.io/bigpod98/rmn-aptrepoinit:latest\");",
+            "INSERT INTO Settings (setting, vsettings) VALUES (\"RPMRepository\", \"ghcr.io/bigpod98/rmn-rpmrepoinit:latest\");",
+            "INSERT INTO Settings (setting, vsettings) VALUES (\"PacmanRepository\", \"ghcr.io/bigpod98/rmn-pacmanrepoinit:latest\");",
+            "INSERT INTO Settings (setting, vsettings) VALUES (\"IngressClass\", \"nginx\");"
             };
 
 con.Open();

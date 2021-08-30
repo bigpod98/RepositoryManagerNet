@@ -15,6 +15,7 @@ namespace RepositoryManagerNet.API
         public static string StorageClass;
         public static string KubernetesNamespace;
         public static string RepositoryHostname;
+        public static string IngressClass;
 
 
         public static class ContainerImages
@@ -97,6 +98,9 @@ namespace RepositoryManagerNet.API
                         break;
                     case "InitPacmanRepository":
                         ContainerImages.PacmanRepository = reader.GetString("vsettings");
+                        break;
+                    case "IngressClass":
+                        IngressClass = reader.GetString("vsettings");
                         break;
                 }
             }
