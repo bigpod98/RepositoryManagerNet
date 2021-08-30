@@ -12,7 +12,7 @@ RUN chmod +x /kubectl
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0.0-preview.7-focal-amd64 AS RUNTIME
 RUN apt update && apt upgrade -y
-RUN mkdir -p /KubernetesObjects/
+RUN mkdir -p /KubernetesObjects/ /temp
 COPY --from=KUBECTLINSTALL /kubectl /usr/bin/kubectl
 COPY KubernetesObjects/* /KubernetesObjects/
 COPY --from=BUILDER /buildOutput /opt/RepositoryManagerNet.API
