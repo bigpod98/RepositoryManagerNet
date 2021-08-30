@@ -206,7 +206,7 @@ namespace RepositoryManagerNet.API.Controllers
             {
                 string deploy = System.IO.File.ReadAllText("/KubernetesObjects/PVC.yaml");
 
-                deploy = deploy.Replace("nameofrepo", $"{RepositoryData.Name}-pvc");
+                deploy = deploy.Replace("nameofrepo-pvc", $"{RepositoryData.Name}-pvc");
                 deploy = deploy.Replace("namespacetemplate", Settings.KubernetesNamespace);
                 deploy = deploy.Replace("storageclassnamex", Settings.StorageClass);
 
@@ -216,7 +216,7 @@ namespace RepositoryManagerNet.API.Controllers
             {
                 string deploy = System.IO.File.ReadAllText("/KubernetesObjects/PVC.yaml");
 
-                deploy = deploy.Replace("nameofrepo", $"{RepositoryData.Name}-incoming-pvc");
+                deploy = deploy.Replace("nameofrepo-pvc", $"{RepositoryData.Name}-incoming-pvc");
                 deploy = deploy.Replace("namespacetemplate", Settings.KubernetesNamespace);
                 deploy = deploy.Replace("storageclassnamex", Settings.StorageClass);
 
