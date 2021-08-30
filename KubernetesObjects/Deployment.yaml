@@ -43,7 +43,7 @@ spec:
             - mountPath: /repository
               name: repovolume
             - mountPath: /incoming
-              name: incomingData
+              name: incomingdata
         - name: nameofrepo-server
           image: nginx
           resources:
