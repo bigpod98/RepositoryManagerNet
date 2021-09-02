@@ -25,3 +25,18 @@ spec:
     targetPort: 80
   selector:
     app: rmn-wui
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: repositorymanagernetuploadapi
+  namespace: repositorymanagernet
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: rmn-uploadapi
