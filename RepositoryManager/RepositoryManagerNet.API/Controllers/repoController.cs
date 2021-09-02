@@ -66,7 +66,7 @@ namespace RepositoryManagerNet.API.Controllers
                 repos.Repodata.Add(new Models.RepoData(reader.GetInt32("ID"), reader.GetString("Name"),
                     reader.GetString("PackageType"), reader.GetString("BaseDomain")));
             }
-
+            Console.WriteLine(repos.Repodata[0].Name);
             Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(repos));
             
             return repos;
