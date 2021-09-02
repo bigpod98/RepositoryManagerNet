@@ -208,7 +208,8 @@ namespace RepositoryManagerNet.API.Controllers
 
                 deploy = deploy.Replace("nameofrepo-pvc", $"{RepositoryData.Name}-pvc");
                 deploy = deploy.Replace("namespacetemplate", Settings.KubernetesNamespace);
-                deploy = deploy.Replace("storageclassnamex", Settings.StorageClass);
+                deploy = deploy.Replace("storageclassnamex", Settings.StorageClass.Replace("\"", ""));
+                deploy = deploy.Replace("\"", "");
 
                 return deploy;
             }
@@ -218,7 +219,8 @@ namespace RepositoryManagerNet.API.Controllers
 
                 deploy = deploy.Replace("nameofrepo-pvc", $"{RepositoryData.Name}-incoming-pvc");
                 deploy = deploy.Replace("namespacetemplate", Settings.KubernetesNamespace);
-                deploy = deploy.Replace("storageclassnamex", Settings.StorageClass);
+                deploy = deploy.Replace("storageclassnamex", Settings.StorageClass.Replace("\"",""));
+                deploy = deploy.Replace("\"", "");
 
                 return deploy;
             
