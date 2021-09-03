@@ -66,7 +66,13 @@ namespace RepositoryManagerNet.API.Controllers
                 repos.Repodata.Add(new Models.RepoData(reader.GetInt32("ID"), reader.GetString("Name"),
                     reader.GetString("PackageType"), reader.GetString("BaseDomain")));
             }
-            Console.WriteLine(repos.Repodata[0].Name);
+
+            Console.WriteLine("THIS IS DEVELOPMENT OUTPUT");
+            foreach (var i in repos.Repodata)
+            {
+                Console.WriteLine($"1 {i.Name}, 2 {i.PackageType}, 3 {i.BaseDomain}, 4 {i.ID}");
+            }
+            Console.WriteLine("THIS IS DEVELOPMENT OUTPUT");
             Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(repos));
             
             return repos;
