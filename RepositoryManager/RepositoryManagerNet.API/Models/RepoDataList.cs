@@ -4,6 +4,6 @@ namespace RepositoryManagerNet.API.Models
 {
     public class RepoDataList
     {
-        public List<RepoData> Repodata = new List<RepoData>();
+        public List<RepoData> Repodata { get; set; }
     }
 }
