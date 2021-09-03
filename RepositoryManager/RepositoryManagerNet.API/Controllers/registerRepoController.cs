@@ -80,49 +80,6 @@ namespace RepositoryManagerNet.API.Controllers
             return KubeObject;
         }
 
-        public static string getPackageType(string type, bool isWatcher)
-        {
-            string x = "";
-            if (isWatcher)
-            {
-                switch (type)
-                {
-                    case "APT":
-                        x = Settings.ContainerImages.APTRepository;
-                        break;
-                    case "Pacman":
-                        x = Settings.ContainerImages.PacmanRepository;
-                        break;
-                    case "RPM":
-                        x = Settings.ContainerImages.RPMRepository;
-                        break;
-                    default:
-                        x = Settings.ContainerImages.APTRepository;
-                        break;
-                }
-            }
-            else
-            {
-                switch (type)
-                {
-                    case "APT":
-                        x = Settings.ContainerImages.InitAPTRepository;
-                        break;
-                    case "Pacman":
-                        x = Settings.ContainerImages.InitPacmanRepository;
-                        break;
-                    case "RPM":
-                        x = Settings.ContainerImages.InitRPMRepository;
-                        break;
-                    default:
-                        x = Settings.ContainerImages.InitAPTRepository;
-                        break;
-                }
-            }
-
-            return x;
-        }
-
         public static k8s.Models.V1Service Service(Models.RepoData RepoData)
         {
             k8s.Models.V1Service KubeObject = k8s.Yaml.LoadFromFileAsync<k8s.Models.V1Service>("/KubernetesObjects/Service.yaml").Result;
@@ -171,6 +128,49 @@ namespace RepositoryManagerNet.API.Controllers
         
         public static class deploybyhand
         {
+            public static string getPackageType(string type, bool isWatcher)
+            {
+                string x = "";
+                if (isWatcher)
+                {
+                    switch (type)
+                    {
+                        case "APT":
+                            x = Settings.ContainerImages.APTRepository;
+                            break;
+                        case "Pacman":
+                            x = Settings.ContainerImages.PacmanRepository;
+                            break;
+                        case "RPM":
+                            x = Settings.ContainerImages.RPMRepository;
+                            break;
+                        default:
+                            x = Settings.ContainerImages.APTRepository;
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (type)
+                    {
+                        case "APT":
+                            x = Settings.ContainerImages.InitAPTRepository;
+                            break;
+                        case "Pacman":
+                            x = Settings.ContainerImages.InitPacmanRepository;
+                            break;
+                        case "RPM":
+                            x = Settings.ContainerImages.InitRPMRepository;
+                            break;
+                        default:
+                            x = Settings.ContainerImages.InitAPTRepository;
+                            break;
+                    }
+                }
+
+                return x;
+            }
+
             public static string CreateDeployment(Models.RepoData RepositoryData)
             {
                 string deploy = System.IO.File.ReadAllText("/KubernetesObjects/Deployment.yaml");
@@ -179,6 +179,8 @@ namespace RepositoryManagerNet.API.Controllers
                 deploy = deploy.Replace("claimnameRV", $"{RepositoryData.Name}-pvc");
                 deploy = deploy.Replace("claimnameID", $"{RepositoryData.Name}-incoming-pvc");
                 deploy = deploy.Replace("imagepullsecrettemplate", "iimagepullsecrettemplate");
+                deploy = deploy.Replace("initimage", getPackageType(RepositoryData.PackageType, false));
+                deploy = deploy.Replace("containerimage", getPackageType(RepositoryData.PackageType, true));
 
                 return deploy;
             }

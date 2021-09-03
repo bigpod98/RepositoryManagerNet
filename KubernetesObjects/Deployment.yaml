@@ -33,7 +33,7 @@ spec:
               name: repovolume
       containers:
         - name: nameofrepo
-          image: image
+          image: containerimage
           resources:
             limits:
               memory: 1Gi
