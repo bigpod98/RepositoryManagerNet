@@ -7,7 +7,13 @@
     var body = await responseMessage.Content.ReadAsStringAsync();
     Console.WriteLine(body);
     var Repos = JsonSerializer.Deserialize<RepositoryManagerNet.WebUI.Models.RepoDataList>(body);
-    Console.WriteLine(Repos.Repodata[0].ID);
+    Console.WriteLine("THIS IS DEVELOPMENT OUTPUT");
+    foreach (var i in Repos.repodata)
+    {
+        Console.WriteLine($"1 {i.Name}, 2 {i.PackageType}, 3 {i.BaseDomain}, 4 {i.ID}");
+    }
+    Console.WriteLine("THIS IS DEVELOPMENT OUTPUT");
+    Console.WriteLine(Repos.repodata[0].ID);
 }
 <head>
     <link rel="stylesheet" href="css/style.css"> 
@@ -32,7 +38,7 @@
                  
             </th>
         </tr>
-        @foreach (RepositoryManagerNet.WebUI.Models.RepoData i in Repos.Repodata)
+        @foreach (RepositoryManagerNet.WebUI.Models.RepoData i in Repos.repodata)
         {
             
             <tr>
