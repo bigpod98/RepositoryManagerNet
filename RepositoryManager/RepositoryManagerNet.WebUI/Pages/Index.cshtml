@@ -7,6 +7,7 @@
     var body = await responseMessage.Content.ReadAsStringAsync();
     Console.WriteLine(body);
     var Repos = JsonSerializer.Deserialize<RepositoryManagerNet.WebUI.Models.RepoDataList>(body);
+    Console.WriteLine("texensus");
     Console.WriteLine("THIS IS DEVELOPMENT OUTPUT");
     foreach (var i in Repos.repodata)
     {
