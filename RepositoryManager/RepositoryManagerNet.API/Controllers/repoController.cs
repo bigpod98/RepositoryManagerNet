@@ -60,6 +60,7 @@ namespace RepositoryManagerNet.API.Controllers
             MySqlDataReader reader = cmd.ExecuteReader();
 
             var repos = new Models.RepoDataList();
+            repos.Repodata = new List<Models.RepoData>();
             while (reader.Read())
             {
                 Console.WriteLine(reader.GetString("Name"));
