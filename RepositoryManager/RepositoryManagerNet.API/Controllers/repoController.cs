@@ -15,21 +15,14 @@ namespace RepositoryManagerNet.API.Controllers
     public class repoController : ControllerBase
     { 
         [HttpGet("repoID")]
-        public string Get(string repoID)
+        public string Get(int repoID)
         {
             MySqlConnection con = new MySqlConnection(conBuilder.GetConnectionString(true));
 
             string Command = $"SELECT ID, Name, PackageType, BaseDomain FROM Repositories WHERE ID=@repoID;";
 
             MySqlCommand cmd = new MySqlCommand(Command, con);
-            if (Int32.TryParse(repoID, out _))
-            {
-                cmd.Parameters.AddWithValue("@repoID", repoID);
-            }
-            else
-            {
-                return "Error: RepoID not a intiger";
-            }
+            cmd.Parameters.AddWithValue("@repoID", repoID);
 
             con.Open();
 
