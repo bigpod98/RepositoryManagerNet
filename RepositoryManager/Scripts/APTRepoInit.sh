@@ -1,3 +1,4 @@
+mkdir /repository/conf
 touch /repository/conf/distributions
 
 
