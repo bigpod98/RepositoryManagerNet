@@ -181,6 +181,7 @@ namespace RepositoryManagerNet.API.Controllers
                 deploy = deploy.Replace("imagepullsecrettemplate", "iimagepullsecrettemplate");
                 deploy = deploy.Replace("initimage", getPackageType(RepositoryData.PackageType, false));
                 deploy = deploy.Replace("containerimage", getPackageType(RepositoryData.PackageType, true));
+                Console.WriteLine(deploy);
 
                 return deploy;
             }

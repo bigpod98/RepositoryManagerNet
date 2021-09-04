@@ -91,13 +91,13 @@ namespace RepositoryManagerNet.API
                         ContainerImages.PacmanRepository = reader.GetString("vsettings");
                         break;
                     case "InitAPTRepository":
-                        ContainerImages.APTRepository = reader.GetString("vsettings");
+                        ContainerImages.InitAPTRepository = reader.GetString("vsettings");
                         break;
                     case "InitRPMRepository":
-                        ContainerImages.RPMRepository = reader.GetString("vsettings");
+                        ContainerImages.InitRPMRepository = reader.GetString("vsettings");
                         break;
                     case "InitPacmanRepository":
-                        ContainerImages.PacmanRepository = reader.GetString("vsettings");
+                        ContainerImages.InitPacmanRepository = reader.GetString("vsettings");
                         break;
                     case "IngressClass":
                         IngressClass = reader.GetString("vsettings");
