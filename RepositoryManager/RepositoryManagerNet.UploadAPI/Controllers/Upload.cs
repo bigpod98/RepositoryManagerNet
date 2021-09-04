@@ -9,14 +9,35 @@ public class Upload : ControllerBase
 {
     // POST <UploadController>
     [HttpPost]
-    public string Post(IFormFile package)
+    public async Task<string> PostAsync(IFormFile package, string repositoryname)
     {
+        HttpClient client = new HttpClient()
+        { BaseAddress = new Uri("http://repositorymanagernetapi") };
+        HttpResponseMessage responseMessage = await client.GetAsync("api/repo");
+        var Repos = await responseMessage.Content.ReadFromJsonAsync<Models.RepoDataList>();
+        bool equalstoanything = false;
+        string path = "";
+        foreach (var i in Repos.repodata)
+        {
+            if(i.Name.ToLower() == repositoryname.ToLower())
+            {
+                equalstoanything = true;
+                path = $"/repositories/{i.Name}";
+                break;
+            }
+            else
+            {
+                equalstoanything = false;   
+            }
+        }
+
+        if (!equalstoanything)
+            return "Repository name invalid";
+
         string returnval = $"{package.Name} -- {package.ContentType} -- {package.ToString()}";
         if (package.Length > 0)
         {
-            var filePath = Path.GetTempFileName();
-
-            using (var stream = System.IO.File.Create(filePath))
+            using (var stream = System.IO.File.Create(path))
             {
                 package.CopyTo(stream);
                 using (var fileStream = System.IO.File.Create(""))
