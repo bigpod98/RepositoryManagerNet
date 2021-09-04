@@ -4,9 +4,7 @@
 @model RepositoryManagerNet.WebUI.Pages.IndexModel
 @{
     HttpResponseMessage responseMessage = await IndexModel.client.GetAsync("api/repo");
-    var body = await responseMessage.Content.ReadAsStringAsync();
-    Console.WriteLine(body);
-    var Repos = JsonSerializer.Deserialize<RepositoryManagerNet.WebUI.Models.RepoDataList>(body);
+    var Repos = await responseMessage.Content.ReadFromJsonAsync<Models.RepoDataList>();
     Console.WriteLine("texensus");
     Console.WriteLine("THIS IS DEVELOPMENT OUTPUT");
     foreach (var i in Repos.repodata)
