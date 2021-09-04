@@ -1,0 +1,78 @@
+﻿@page
+@using System.Net.Http
+@using System.Text.Json
+@model RepositoryManagerNet.WebUI.Pages.IndexModel
+@{
+    HttpResponseMessage responseMessage = await IndexModel.client.GetAsync("api/repo");
+    var Repos = await responseMessage.Content.ReadFromJsonAsync<Models.RepoDataList>();
+    Console.WriteLine("texensus");
+    Console.WriteLine("THIS IS DEVELOPMENT OUTPUT");
+    foreach (var i in Repos.repodata)
+    {
+        Console.WriteLine($"1 {i.Name}, 2 {i.PackageType}, 3 {i.BaseDomain}, 4 {i.ID}");
+    }
+    Console.WriteLine("THIS IS DEVELOPMENT OUTPUT");
+    Console.WriteLine(Repos.repodata[0].ID);
+}
+<head>
+    <link rel="stylesheet" href="css/style.css"> 
+</head>
+<body>
+    <div>
+    <table>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Domain
+            </th>
+            <th>
+                 
+            </th>
+        </tr>
+        @foreach (RepositoryManagerNet.WebUI.Models.RepoData i in Repos.repodata)
+        {
+            
+            <tr>
+                <td>
+                    @i.ID;
+                </td>
+                <td>
+                    @i.Name;
+                </td>
+                <td>
+                    @i.PackageType;
+                </td>
+                <td>
+                    @i.BaseDomain
+                </td>
+                <td>
+                    <a asp-page="/Repository/">Details</a><br />
+                    <a asp-page="/edit/@i.ID">EDIT</a><br />
+                </td>
+            </tr>
+        }
+    </table>
+    </div>
+    <div>
+        <form method="post">
+            <label>Name: </label>
+            <input type="text" asp-for="Name">
+            <label>Package manager type: </label>
+            @foreach (string item in Model.PackageManagerTypes)
+            {
+                <input type="radio" asp-for="PackageType" value="@item" />@item
+            }
+            <label>Base Domain: </label>
+            <input type="text" asp-for="BaseDomain">
+            <button type="submit">SUBMIT</button>
+        </form>
+    </div>
+</body>
