@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+//For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace RepositoryManagerNet.UploadAPI.Controllers;
 [Route("/api/upload/[controller]")]
 [ApiController]
 public class Upload : ControllerBase
 {
-    // POST <UploadController>
-    [HttpPost]
+    //POST<UploadController>
+   [HttpPost]
     public async Task<string> PostAsync(IFormFile package, string repositoryname)
     {
         HttpClient client = new HttpClient()
@@ -19,7 +19,7 @@ public class Upload : ControllerBase
         string path = "";
         foreach (var i in Repos.repodata)
         {
-            if(i.Name.ToLower() == repositoryname.ToLower())
+            if (i.Name.ToLower() == repositoryname.ToLower())
             {
                 equalstoanything = true;
                 path = $"/repositories/{i.Name}";
@@ -27,7 +27,7 @@ public class Upload : ControllerBase
             }
             else
             {
-                equalstoanything = false;   
+                equalstoanything = false;
             }
         }
 
@@ -37,13 +37,9 @@ public class Upload : ControllerBase
         string returnval = $"{package.Name} -- {package.ContentType} -- {package.ToString()}";
         if (package.Length > 0)
         {
-            using (var stream = System.IO.File.Create(path))
+            using (var fileStream = System.IO.File.Create(path))
             {
-                package.CopyTo(stream);
-                using (var fileStream = System.IO.File.Create(""))
-                {
-                    package.CopyTo(fileStream);
-                }
+                package.CopyTo(fileStream);
             }
         }
         return returnval;
