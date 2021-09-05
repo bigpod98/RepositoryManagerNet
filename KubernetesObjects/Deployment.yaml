@@ -54,7 +54,7 @@ spec:
           ports:
             - containerPort: 80
           volumeMounts:
-            - mountPath: /usr/share/nginx/html:ro
+            - mountPath: /usr/share/nginx/html
               name: repovolume
       imagePullSecrets:
         - name: imagepullsecrettemplate

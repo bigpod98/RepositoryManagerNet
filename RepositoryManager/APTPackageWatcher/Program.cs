@@ -27,7 +27,6 @@ while (true)
             p.StartInfo.FileName = "reprepro";
             p.StartInfo.Arguments = $"-b {repoLocation}/ includedeb {codename} {i.FullName}";
             p.StartInfo.UseShellExecute = true;
-            p.StartInfo.RedirectStandardOutput = true;
             p.Start();
             p.WaitForExit();
 
