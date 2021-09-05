@@ -8,9 +8,10 @@ namespace RepositoryManagerNet.UploadAPI.Controllers;
 public class Upload : ControllerBase
 {
     //POST<UploadController>
-   [HttpPost]
+    [HttpPost("{repositoryname}")]
     public async Task<string> PostAsync(IFormFile package, string repositoryname)
     {
+        Console.WriteLine("test");
         HttpClient client = new HttpClient()
         { BaseAddress = new Uri("http://repositorymanagernetapi") };
         HttpResponseMessage responseMessage = await client.GetAsync("api/repo");

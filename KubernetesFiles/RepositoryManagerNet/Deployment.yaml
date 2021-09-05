@@ -70,8 +70,15 @@ spec:
       labels:
         app: rmn-uploadapi
     spec:
+      volumes:
+        - name: incomingdata
+          persistentVolumeClaim:
+            claimName: claimnameid
       containers:
       - image: ghcr.io/bigpod98/repositorymanagernetuploadapi:latest
         name: rmn-uploadapi
         ports:
         - containerPort: 80
+        volumeMounts:
+          - mountPath: /repositories/examplePath
+            name: examplename

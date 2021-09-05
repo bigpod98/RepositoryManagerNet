@@ -14,7 +14,7 @@ namespace RepositoryManagerNet.API.Controllers
     [Route("api/[controller]")]
     public class repoController : ControllerBase
     { 
-        [HttpGet("repoID")]
+        [HttpGet("{repoID}")]
         public string Get(int repoID)
         {
             MySqlConnection con = new MySqlConnection(conBuilder.GetConnectionString(true));
