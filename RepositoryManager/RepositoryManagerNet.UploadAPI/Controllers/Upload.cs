@@ -11,7 +11,7 @@ public class Upload : ControllerBase
     [HttpPost("{repositoryname}")]
     public async Task<string> PostAsync(IFormFile package, string repositoryname)
     {
-        Console.WriteLine("test");
+        Console.WriteLine(repositoryname);
         HttpClient client = new HttpClient()
         { BaseAddress = new Uri("http://repositorymanagernetapi") };
         HttpResponseMessage responseMessage = await client.GetAsync("api/repo");
