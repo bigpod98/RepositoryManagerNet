@@ -31,6 +31,7 @@ while (true)
             p.Start();
             p.WaitForExit();
 
+            System.IO.File.Delete(i.FullName);
         }
     }
 
