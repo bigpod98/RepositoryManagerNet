@@ -42,7 +42,7 @@ spec:
           volumeMounts:
             - mountPath: /repository
               name: repovolume
-            - mountPath: /incoming
+            - mountPath: /Watch
               name: incomingdata
         - name: nameofrepo-server
           image: nginx
