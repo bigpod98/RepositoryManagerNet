@@ -24,8 +24,8 @@ while (true)
             //reprepro -b repo/ includedeb trusty jake_1.0-7_amd64.deb
             Process p = new Process();
 
-            p.StartInfo.FileName = "";
-            p.StartInfo.Arguments = $"\"reprepro -b {repoLocation}/ includedeb {codename} {i.FullName}\"";
+            p.StartInfo.FileName = "bash";
+            p.StartInfo.Arguments = $"-c \"reprepro -b {repoLocation}/ includedeb {codename} {i.FullName}\"";
             p.StartInfo.UseShellExecute = false;
             p.StartInfo.RedirectStandardOutput = true;  
             p.Start();
