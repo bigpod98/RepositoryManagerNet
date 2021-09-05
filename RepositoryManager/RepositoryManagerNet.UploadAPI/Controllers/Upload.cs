@@ -9,7 +9,7 @@ public class Upload : ControllerBase
 {
     //POST<UploadController>
     [HttpPost("{repositoryname}")]
-    public async Task<string> PostAsync(IFormFile package, string repositoryname)
+    public async Task<string> PostAsync([FromForm] IFormFile package, string repositoryname)
     {
         Console.WriteLine(repositoryname);
         HttpClient client = new HttpClient()
