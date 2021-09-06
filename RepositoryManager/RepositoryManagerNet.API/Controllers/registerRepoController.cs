@@ -248,6 +248,7 @@ namespace RepositoryManagerNet.API.Controllers
 
             public static void deployProcess(string x)
             {
+                Console.WriteLine("deployprocess");
                 Random a = new Random();
                 string b = a.Next(1000000, 9999999).ToString();
 
@@ -273,6 +274,7 @@ namespace RepositoryManagerNet.API.Controllers
 
                 string filename = $"{b}.yaml";
                 string path = $"/temp/{filename}";
+                Console.WriteLine("GetProcess");
 
                 Process p = new Process();
                 p.StartInfo.FileName = "kubectl";
