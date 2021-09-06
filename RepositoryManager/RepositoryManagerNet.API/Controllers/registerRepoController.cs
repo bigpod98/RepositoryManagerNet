@@ -228,22 +228,6 @@ namespace RepositoryManagerNet.API.Controllers
                 deploy = deploy.Replace("\"", "");
 
                 return deploy;
-            
-            }
-
-            public static string UpdateUploadAPU(Models.RepoData RepositoryData)
-            {
-                string x = getProcess();
-
-                string remove = $"        - name: incomingdata{Environment.NewLine}          persistentVolumeClaim:{Environment.NewLine}            claimName: claimnameid";
-                string remove2 = $"          - mountPath: /repositories/examplePath{Environment.NewLine}            name: incomingdata";
-
-                string y = remove.Replace("incomingdata", $"incoming-{RepositoryData.Name}").Replace("claimnameid", $"{RepositoryData.Name}-incoming-pvc");
-                string z = remove2.Replace("examplePath", $"{RepositoryData.Name}").Replace("incomingdata", $"{RepositoryData.Name}-incoming-pvc");
-                x = x.Replace(remove, $"{remove}{Environment.NewLine}{y}").Replace(remove2, $"{remove2}{Environment.NewLine}{z}");
-
-
-                return x;
             }
 
             public static void deployProcess(string x)
@@ -265,27 +249,6 @@ namespace RepositoryManagerNet.API.Controllers
 
                 System.IO.File.Delete(path);
 
-            }
-
-            public static string getProcess()
-            {
-                Random a = new Random();
-                string b = a.Next(1000000, 9999999).ToString();
-
-                string filename = $"{b}.yaml";
-                string path = $"/temp/{filename}";
-                Console.WriteLine("GetProcess");
-
-                System.IO.File.WriteAllText($"/temp/{b}", $"kubectl get deploymnet.apps/repositorymanagernetuploadapi -n {Settings.KubernetesNamespace} -o yaml > {path}");
-
-                Process p = new Process();
-                p.StartInfo.FileName = $"/temp/{b}";
-                //p.StartInfo.Arguments = $"get deployment.apps/repositorymanagernetuploadapi -n {Settings.KubernetesNamespace} -o yaml > {path}";
-                p.StartInfo.UseShellExecute = true;
-                p.Start();
-                p.WaitForExit();
-
-                return System.IO.File.ReadAllText(path);
             }
         }
 

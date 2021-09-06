@@ -20,7 +20,8 @@ while (true)
         foreach (System.IO.FileInfo i in files)
         {
             Console.WriteLine(i.FullName);
-
+            if (!i.FullName.EndsWith(".deb"))
+                continue;
             //reprepro -b repo/ includedeb trusty jake_1.0-7_amd64.deb
             Process p = new Process();
 

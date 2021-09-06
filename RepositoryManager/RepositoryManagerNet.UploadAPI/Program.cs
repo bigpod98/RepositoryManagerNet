@@ -11,7 +11,7 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 var app = builder.Build();
-
+app.UsePathBase(new PathString($"/{Environment.GetEnvironmentVariable("REPONAME")}"));
 // Configure the HTTP request pipeline.
 if (builder.Environment.IsDevelopment())
 {

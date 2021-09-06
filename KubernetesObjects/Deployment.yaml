@@ -32,6 +32,19 @@ spec:
             - mountPath: /repository
               name: repovolume
       containers:
+        - name: nameofrepo-uploadapi
+          image: ghcr.io/bigpod98/repositorymanagernetuploadapi:latest
+          resources:
+            limits:
+              memory: 1Gi
+              cpu: "500m"
+          imagePullPolicy: "IfNotPresent"
+          env:
+            - name: "REPONAME"
+              value: "nameofrepo"
+          volumeMounts:
+            - mountPath: /Watch
+              name: incomingdata
         - name: nameofrepo
           image: containerimage
           resources:
