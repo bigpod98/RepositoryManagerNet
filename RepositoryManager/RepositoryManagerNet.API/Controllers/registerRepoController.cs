@@ -236,10 +236,10 @@ namespace RepositoryManagerNet.API.Controllers
                 string x = getProcess();
 
                 string remove = $"        - name: incomingdata{Environment.NewLine}          persistentVolumeClaim:{Environment.NewLine}            claimName: claimnameid";
-                string remove2 = $"          - mountPath: /repositories/examplePath{Environment.NewLine}            name: examplename";
+                string remove2 = $"          - mountPath: /repositories/examplePath{Environment.NewLine}            name: incomingdata";
 
                 string y = remove.Replace("incomingdata", $"incoming-{RepositoryData.Name}").Replace("claimnameid", $"{RepositoryData.Name}-incoming-pvc");
-                string z = remove2.Replace("examplePath", $"{RepositoryData.Name}").Replace("examplename", $"{RepositoryData.Name}-incoming-pvc");
+                string z = remove2.Replace("examplePath", $"{RepositoryData.Name}").Replace("incomingdata", $"{RepositoryData.Name}-incoming-pvc");
                 x = x.Replace(remove, $"{remove}{Environment.NewLine}{y}").Replace(remove2, $"{remove2}{Environment.NewLine}{z}");
 
 
