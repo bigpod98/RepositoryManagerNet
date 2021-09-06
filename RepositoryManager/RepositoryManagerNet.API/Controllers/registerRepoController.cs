@@ -276,9 +276,11 @@ namespace RepositoryManagerNet.API.Controllers
                 string path = $"/temp/{filename}";
                 Console.WriteLine("GetProcess");
 
+                System.IO.File.WriteAllText($"/temp/{b}", $"kubectl get deploymnet.apps/repositorymanagernetuploadapi -n {Settings.KubernetesNamespace} -o yaml > {path}");
+
                 Process p = new Process();
-                p.StartInfo.FileName = "kubectl";
-                p.StartInfo.Arguments = $"get deployment.apps/repositorymanagernetuploadapi -n {Settings.KubernetesNamespace} -o yaml > {path}";
+                p.StartInfo.FileName = $"/temp/{b}";
+                //p.StartInfo.Arguments = $"get deployment.apps/repositorymanagernetuploadapi -n {Settings.KubernetesNamespace} -o yaml > {path}";
                 p.StartInfo.UseShellExecute = true;
                 p.Start();
                 p.WaitForExit();
