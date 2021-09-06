@@ -276,7 +276,7 @@ namespace RepositoryManagerNet.API.Controllers
 
                 Process p = new Process();
                 p.StartInfo.FileName = "kubectl";
-                p.StartInfo.Arguments = $"get deployment repositorymanagernetuploadapi -n {Settings.KubernetesNamespace} > {path}";
+                p.StartInfo.Arguments = $"get deployment.apps/repositorymanagernetuploadapi -n {Settings.KubernetesNamespace} -o yaml > {path}";
                 p.StartInfo.UseShellExecute = true;
                 p.Start();
                 p.WaitForExit();
