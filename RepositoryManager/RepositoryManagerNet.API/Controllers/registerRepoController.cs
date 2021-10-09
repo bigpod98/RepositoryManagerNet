@@ -54,7 +54,7 @@ namespace RepositoryManagerNet.API.Controllers
             deploybyhand.deployProcess(deploybyhand.CreateIngress(RepositoryData));
             deploybyhand.deployProcess(deploybyhand.CreatePersistentVolumeClaim_a(RepositoryData));
             deploybyhand.deployProcess(deploybyhand.CreatePersistentVolumeClaim_b(RepositoryData));
-            deploybyhand.deployProcess(deploybyhand.UpdateUploadAPU(RepositoryData));
+            //deploybyhand.deployProcess(deploybyhand.UpdateUploadAPU(RepositoryData));
 
             return RepositoryData.Name;
         }
